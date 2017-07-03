@@ -10,6 +10,8 @@ import UIKit
 
 class AboutMeViewController: UIViewController {
 
+    var imageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
@@ -27,8 +29,24 @@ class AboutMeViewController: UIViewController {
         button2.setTitleColor(App.navColor, for: UIControlState.normal)
         button2.addTarget(self, action: #selector(goToTwo), for: UIControlEvents.touchUpInside)
         view.addSubview(button2)
-    }
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        animationStart()
+    }
+    
+//    func animationStart() {
+//        let animation = CABasicAnimation(keyPath: "transform.scale")
+//        animation.duration = 1.2
+//        animation.repeatCount = HUGE
+//        animation.autoreverses = true
+//        animation.fromValue = 1.0
+//        animation.toValue = 1.1
+//        imageView.layer.add(animation, forKey: "animation")
+//    }
+    
     func goTo() {
         self.navigationController?.pushViewController(HomeViewController(), animated: true)
     }
