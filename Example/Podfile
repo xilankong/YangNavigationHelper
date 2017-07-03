@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'YangNavigationHelper_Example' do
+  pod 'YangNavigationHelper', :path => '../'
+
+  target 'YangNavigationHelper_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
