@@ -29,15 +29,15 @@ class AboutMeViewController: UIViewController {
         view.addSubview(button2)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func goTo() {
         self.navigationController?.pushViewController(HomeViewController(), animated: true)
     }
     func goToTwo() {
         self.modalViewController(ModalViewController(), needNavigation: true, sender: nil)
     }
-
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
 }

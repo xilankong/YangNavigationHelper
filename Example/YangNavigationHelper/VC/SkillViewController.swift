@@ -21,16 +21,14 @@ class SkillViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-//        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     func initUI() {
-//        self.rt_navigationBackgroundColor(UIColor(white: 1, alpha: 1.0))
-//        self.rt_navigationStatusBarStatus(.lightContent)
+        self.rt_navigationBackgroundColor(App.navColor)
+        self.rt_navigationStatusBarStatus(.lightContent)
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-//        tableView.showsVerticalScrollIndicator = false
     }
     
     
@@ -56,8 +54,4 @@ extension SkillViewController: UITableViewDelegate, UITableViewDataSource, UIScr
         self.navigationController?.pushViewController(DetialViewController(), animated: true)
     }
     
-    
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.navigationController?.navigationBar.transform = CGAffineTransform(translationX: 0, y: -25);
-    }
 }

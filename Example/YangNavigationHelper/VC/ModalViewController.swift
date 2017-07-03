@@ -25,16 +25,14 @@ class ModalViewController: UIViewController {
         view.addSubview(button)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     func goTo() {
         self.navigationController?.pushViewController(HomeViewController(), animated: true)
     }
     func goBack() {
         self.dismiss(animated: true, completion: nil)
     }
-
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
 }
