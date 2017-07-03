@@ -9,12 +9,21 @@
 /* Begin PBXBuildFile section */
 		357DC4D96682A5166A28EEAF /* Pods_YangNavigationHelper_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC98219C8F430B13B8B1C230 /* Pods_YangNavigationHelper_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		6DDA2C9CECAE975C34F294F6 /* Pods_YangNavigationHelper_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7A9CDF21FCA56C5B3E5F83 /* Pods_YangNavigationHelper_Tests.framework */; };
+		6F87DE5A1F0A2EE00011D864 /* PRHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F87DE551F0A2EE00011D864 /* PRHelper.swift */; };
+		6F87DE5B1F0A2EE10011D864 /* PRLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F87DE561F0A2EE00011D864 /* PRLayer.swift */; };
+		6F87DE5C1F0A2EE10011D864 /* PRNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F87DE571F0A2EE00011D864 /* PRNavigationBar.swift */; };
+		6F87DE5D1F0A2EE10011D864 /* PRTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F87DE581F0A2EE00011D864 /* PRTabBarController.swift */; };
+		6F87DE5E1F0A2EE10011D864 /* PRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F87DE591F0A2EE00011D864 /* PRViewController.swift */; };
+		6F87DE661F0A2F350011D864 /* AboutMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F87DE611F0A2F350011D864 /* AboutMeViewController.swift */; };
+		6F87DE671F0A2F350011D864 /* DetialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F87DE621F0A2F350011D864 /* DetialViewController.swift */; };
+		6F87DE681F0A2F350011D864 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F87DE631F0A2F350011D864 /* HomeViewController.swift */; };
+		6F87DE691F0A2F350011D864 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F87DE641F0A2F350011D864 /* ModalViewController.swift */; };
+		6F87DE6A1F0A2F350011D864 /* SkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F87DE651F0A2F350011D864 /* SkillViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,19 +43,29 @@
 		607FACD01AFB9204008FA782 /* YangNavigationHelper_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YangNavigationHelper_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* YangNavigationHelper_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YangNavigationHelper_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		66E5F0AB07AF200BAED7D61E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		66E5F0AB07AF200BAED7D61E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		6F87DE551F0A2EE00011D864 /* PRHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRHelper.swift; sourceTree = "<group>"; };
+		6F87DE561F0A2EE00011D864 /* PRLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRLayer.swift; sourceTree = "<group>"; };
+		6F87DE571F0A2EE00011D864 /* PRNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRNavigationBar.swift; sourceTree = "<group>"; };
+		6F87DE581F0A2EE00011D864 /* PRTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRTabBarController.swift; sourceTree = "<group>"; };
+		6F87DE591F0A2EE00011D864 /* PRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRViewController.swift; sourceTree = "<group>"; };
+		6F87DE611F0A2F350011D864 /* AboutMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutMeViewController.swift; sourceTree = "<group>"; };
+		6F87DE621F0A2F350011D864 /* DetialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetialViewController.swift; sourceTree = "<group>"; };
+		6F87DE631F0A2F350011D864 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		6F87DE641F0A2F350011D864 /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
+		6F87DE651F0A2F350011D864 /* SkillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillViewController.swift; sourceTree = "<group>"; };
+		6F87DE6B1F0A2FDE0011D864 /* YangNavigationHelper_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YangNavigationHelper_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		A6DB599C675B9E1BDBDB21D8 /* Pods-YangNavigationHelper_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YangNavigationHelper_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YangNavigationHelper_Tests/Pods-YangNavigationHelper_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		CB67FAD3B89CA859DB39EDBB /* YangNavigationHelper.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = YangNavigationHelper.podspec; path = ../YangNavigationHelper.podspec; sourceTree = "<group>"; };
+		CB67FAD3B89CA859DB39EDBB /* YangNavigationHelper.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = YangNavigationHelper.podspec; path = ../YangNavigationHelper.podspec; sourceTree = "<group>"; };
 		CC98219C8F430B13B8B1C230 /* Pods_YangNavigationHelper_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YangNavigationHelper_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA1E1FE21FF1373EB14EA582 /* Pods-YangNavigationHelper_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YangNavigationHelper_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YangNavigationHelper_Example/Pods-YangNavigationHelper_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		F57F91A8BFF8267E03695546 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		F57F91A8BFF8267E03695546 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +122,12 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				6F87DE551F0A2EE00011D864 /* PRHelper.swift */,
+				6F87DE561F0A2EE00011D864 /* PRLayer.swift */,
+				6F87DE571F0A2EE00011D864 /* PRNavigationBar.swift */,
+				6F87DE581F0A2EE00011D864 /* PRTabBarController.swift */,
+				6F87DE591F0A2EE00011D864 /* PRViewController.swift */,
+				6F87DE601F0A2F350011D864 /* VC */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -146,6 +170,19 @@
 				F57F91A8BFF8267E03695546 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		6F87DE601F0A2F350011D864 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				6F87DE611F0A2F350011D864 /* AboutMeViewController.swift */,
+				6F87DE621F0A2F350011D864 /* DetialViewController.swift */,
+				6F87DE631F0A2F350011D864 /* HomeViewController.swift */,
+				6F87DE641F0A2F350011D864 /* ModalViewController.swift */,
+				6F87DE651F0A2F350011D864 /* SkillViewController.swift */,
+				6F87DE6B1F0A2FDE0011D864 /* YangNavigationHelper_Example-Bridging-Header.h */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		775F9042FCD76AFDCBE568B4 /* Pods */ = {
@@ -215,7 +252,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0830;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -361,8 +398,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				6F87DE5A1F0A2EE00011D864 /* PRHelper.swift in Sources */,
+				6F87DE6A1F0A2F350011D864 /* SkillViewController.swift in Sources */,
+				6F87DE5D1F0A2EE10011D864 /* PRTabBarController.swift in Sources */,
+				6F87DE661F0A2F350011D864 /* AboutMeViewController.swift in Sources */,
+				6F87DE5C1F0A2EE10011D864 /* PRNavigationBar.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				6F87DE681F0A2F350011D864 /* HomeViewController.swift in Sources */,
+				6F87DE691F0A2F350011D864 /* ModalViewController.swift in Sources */,
+				6F87DE5B1F0A2EE10011D864 /* PRLayer.swift in Sources */,
+				6F87DE5E1F0A2EE10011D864 /* PRViewController.swift in Sources */,
+				6F87DE671F0A2F350011D864 /* DetialViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,11 +542,14 @@
 			baseConfigurationReference = DA1E1FE21FF1373EB14EA582 /* Pods-YangNavigationHelper_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = YangNavigationHelper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "YangNavigationHelper/VC/YangNavigationHelper_Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -510,11 +559,13 @@
 			baseConfigurationReference = 33F01600BB365ABE357A5E93 /* Pods-YangNavigationHelper_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = YangNavigationHelper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "YangNavigationHelper/VC/YangNavigationHelper_Example-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

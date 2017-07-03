@@ -2,6 +2,7 @@ use_frameworks!
 
 target 'YangNavigationHelper_Example' do
   pod 'YangNavigationHelper', :path => '../'
+  pod 'SnapKit'
 
   target 'YangNavigationHelper_Tests' do
     inherit! :search_paths

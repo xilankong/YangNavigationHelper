@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UINavigationBar+Awesome.h"
-
+#import "RTRootNavigationController.h"
 @interface UIViewController (RTNavigationBar)
 
 IB_DESIGNABLE

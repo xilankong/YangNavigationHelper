@@ -14,7 +14,7 @@ class SkillViewController: UIViewController {
     static let triggerMargin: CGFloat = 30
     
     lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: UITableViewStyle.plain)
+        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: App.screenWidth, height: App.screenHeight - 44), style: UITableViewStyle.plain)
         return tableView
     }()
     
@@ -28,10 +28,6 @@ class SkillViewController: UIViewController {
 //        self.rt_navigationBackgroundColor(UIColor(white: 1, alpha: 1.0))
 //        self.rt_navigationStatusBarStatus(.lightContent)
         view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.edges.equalTo(self.view)
-            make.height.equalTo(App.screenHeight - 44)
-        }
         tableView.delegate = self
         tableView.dataSource = self
 //        tableView.showsVerticalScrollIndicator = false

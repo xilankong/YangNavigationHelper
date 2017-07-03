@@ -1,0 +1,19 @@
+PODS:
+  - SnapKit (3.2.0)
+  - YangNavigationHelper (1.0.0)
+
+DEPENDENCIES:
+  - SnapKit
+  - YangNavigationHelper (from `../`)
+
+EXTERNAL SOURCES:
+  YangNavigationHelper:
+    :path: ../
+
+SPEC CHECKSUMS:
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  YangNavigationHelper: 6e49432b91259d27fd9459b8e9334a5046294fbf
+
+PODFILE CHECKSUM: 53c397ad8419fd7887bdba1e4178982e4e47eb73
+
+COCOAPODS: 1.1.0

@@ -39,12 +39,19 @@ static NSInteger const kCATCustomExcludeAlphaTag = 999012;
     hisButton.tag = kCATCustomExcludeAlphaTag;
     hisButton.frame = CGRectMake(0, 0, 25, 25);
     [hisButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    
+    NSBundle*myBundle = [NSBundle bundleForClass:RTRootNavigationController.class];
+    
     if (self.preferredStatusBarStyle == UIStatusBarStyleLightContent) {
-        [hisButton setImage:[UIImage imageNamed:@"nav_back_nor"] forState:UIControlStateNormal];
-        [hisButton setImage:[UIImage imageNamed:@"nav_back_pre"] forState:UIControlStateSelected];
+        NSString *nav_back_nor = [myBundle pathForResource:@"nav_back_nor" ofType:@"png"];
+        NSString *nav_back_pre = [myBundle pathForResource:@"nav_back_pre" ofType:@"png"];
+        [hisButton setImage:[UIImage imageWithContentsOfFile:nav_back_nor] forState:UIControlStateNormal];
+        [hisButton setImage:[UIImage imageWithContentsOfFile:nav_back_pre] forState:UIControlStateSelected];
     } else {
-        [hisButton setImage:[UIImage imageNamed:@"black_nor"] forState:UIControlStateNormal];
-        [hisButton setImage:[UIImage imageNamed:@"black_nor"] forState:UIControlStateSelected];
+        
+        NSString *black_nor = [myBundle pathForResource:@"black_nor" ofType:@"png"];
+        [hisButton setImage:[UIImage imageWithContentsOfFile:black_nor] forState:UIControlStateNormal];
+        [hisButton setImage:[UIImage imageWithContentsOfFile:black_nor] forState:UIControlStateSelected];
     }
     [hisButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     self.rt_backButton = hisButton;
@@ -73,14 +80,17 @@ static NSInteger const kCATCustomExcludeAlphaTag = 999012;
     if (style == [self preferredStatusBarStyle]) {
         return;
     }
+    
+    NSBundle*myBundle = [NSBundle bundleForClass:RTRootNavigationController.class];
     if (style == UIStatusBarStyleDefault) {
         if (self.navigationController) {
             self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : textColor};
             self.rt_lightContentBar = NO;
             [self.navigationController.navigationBar lt_setLineColor:lineColor];
             if (self.rt_backButton) {
-                [self.rt_backButton setImage:[UIImage imageNamed:@"black_nor"] forState:UIControlStateNormal];
-                [self.rt_backButton setImage:[UIImage imageNamed:@"black_nor"] forState:UIControlStateSelected];
+                NSString *black_nor = [myBundle pathForResource:@"black_nor" ofType:@"png"];
+                [self.rt_backButton setImage:[UIImage imageWithContentsOfFile:black_nor] forState:UIControlStateNormal];
+                [self.rt_backButton setImage:[UIImage imageWithContentsOfFile:black_nor] forState:UIControlStateSelected];
             }
         }
     } else {
@@ -89,8 +99,10 @@ static NSInteger const kCATCustomExcludeAlphaTag = 999012;
             self.rt_lightContentBar = YES;
             [self.navigationController.navigationBar lt_setLineColor:[UIColor clearColor]];
             if (self.rt_backButton) {
-                [self.rt_backButton setImage:[UIImage imageNamed:@"nav_back_nor"] forState:UIControlStateNormal];
-                [self.rt_backButton setImage:[UIImage imageNamed:@"nav_back_pre"] forState:UIControlStateSelected];
+                NSString *nav_back_nor = [myBundle pathForResource:@"nav_back_nor" ofType:@"png"];
+                NSString *nav_back_pre = [myBundle pathForResource:@"nav_back_pre" ofType:@"png"];
+                [self.rt_backButton setImage:[UIImage imageWithContentsOfFile:nav_back_nor] forState:UIControlStateNormal];
+                [self.rt_backButton setImage:[UIImage imageWithContentsOfFile:nav_back_pre] forState:UIControlStateSelected];
             }
         }
     }
