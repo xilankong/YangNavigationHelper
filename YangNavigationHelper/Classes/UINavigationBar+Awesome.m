@@ -1,9 +1,8 @@
 //
 //  UINavigationBar+Awesome.m
-//  LTNavigationBar
 //
-//  Created by ltebean on 15-2-15.
-//  Copyright (c) 2015 ltebean. All rights reserved.
+//  Created by yanghuang on 2017/6/24.
+//  Copyright © 2017年 com.yang. All rights reserved.
 //
 
 #import "UINavigationBar+Awesome.h"
@@ -49,22 +48,7 @@ static char overlayLineKey;
         self.overlayLine.userInteractionEnabled = NO;
         
         [self.overlay addSubview:self.overlayLine];
-        
-        UIView *backgroundView = [self.subviews firstObject];
-        [backgroundView insertSubview:self.overlay atIndex:0];
-        //用于适配 lt_setTranslationY  存在问题
-//        NSLayoutConstraint *constraint_left = [NSLayoutConstraint constraintWithItem:self.overlay attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
-//        NSLayoutConstraint *constraint_right = [NSLayoutConstraint constraintWithItem:self.overlay attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
-//        NSLayoutConstraint *constraint_top = [NSLayoutConstraint constraintWithItem:self.overlay attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
-//        NSLayoutConstraint *constraint_bottom = [NSLayoutConstraint constraintWithItem:self.overlay attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
-//        [backgroundView addConstraints:@[constraint_left,constraint_right,constraint_top,constraint_bottom]];
-//        
-//        self.overlayLine.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-//        NSLayoutConstraint *line_constraint_left = [NSLayoutConstraint constraintWithItem:self.overlayLine attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.overlay attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
-//        NSLayoutConstraint *line_constraint_right = [NSLayoutConstraint constraintWithItem:self.overlayLine attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.overlay attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
-//        NSLayoutConstraint *line_constraint_bottom = [NSLayoutConstraint constraintWithItem:self.overlayLine attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.overlay attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
-//        NSLayoutConstraint *line_constraint_height = [NSLayoutConstraint constraintWithItem:self.overlayLine attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.overlay attribute:NSLayoutAttributeHeight multiplier:1.0 constant: 1.0 / [UIScreen mainScreen].scale];
-//        [self.overlay addConstraints:@[line_constraint_left,line_constraint_right,line_constraint_bottom,line_constraint_height]];
+        [[self.subviews firstObject] insertSubview:self.overlay atIndex:0];
     }
     self.overlay.backgroundColor = backgroundColor;
 }

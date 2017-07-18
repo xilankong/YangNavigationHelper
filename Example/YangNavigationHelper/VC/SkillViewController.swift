@@ -31,7 +31,6 @@ class SkillViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -50,8 +49,18 @@ extension SkillViewController: UITableViewDelegate, UITableViewDataSource, UIScr
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 25
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.navigationController?.pushViewController(DetialViewController(), animated: true)
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > -64 {
+            var height = (-64 - (scrollView.contentOffset.y))
+            if height < -44 {
+                height = -44
+            }
+            self.navigationController?.navigationBar.lt_setTranslationY(height)
+        }
+    }
 }

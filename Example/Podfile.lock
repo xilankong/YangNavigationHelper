@@ -8,7 +8,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   YangNavigationHelper:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
@@ -16,4 +16,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 53c397ad8419fd7887bdba1e4178982e4e47eb73
 
-COCOAPODS: 1.1.0
+COCOAPODS: 1.2.1

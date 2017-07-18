@@ -60,7 +60,6 @@
 		6F87DE631F0A2F350011D864 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6F87DE641F0A2F350011D864 /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		6F87DE651F0A2F350011D864 /* SkillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillViewController.swift; sourceTree = "<group>"; };
-		6F87DE6B1F0A2FDE0011D864 /* YangNavigationHelper_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YangNavigationHelper_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		A6DB599C675B9E1BDBDB21D8 /* Pods-YangNavigationHelper_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YangNavigationHelper_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YangNavigationHelper_Tests/Pods-YangNavigationHelper_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CB67FAD3B89CA859DB39EDBB /* YangNavigationHelper.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = YangNavigationHelper.podspec; path = ../YangNavigationHelper.podspec; sourceTree = "<group>"; };
 		CC98219C8F430B13B8B1C230 /* Pods_YangNavigationHelper_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YangNavigationHelper_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,7 +179,6 @@
 				6F87DE631F0A2F350011D864 /* HomeViewController.swift */,
 				6F87DE641F0A2F350011D864 /* ModalViewController.swift */,
 				6F87DE651F0A2F350011D864 /* SkillViewController.swift */,
-				6F87DE6B1F0A2FDE0011D864 /* YangNavigationHelper_Example-Bridging-Header.h */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -328,7 +326,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		5E34528A74ACEBFDC5DAD1A1 /* [CP] Copy Pods Resources */ = {
@@ -373,7 +371,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F3D0D504BF496C4AC16D3CDD /* [CP] Embed Pods Frameworks */ = {
@@ -548,7 +546,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "YangNavigationHelper/VC/YangNavigationHelper_Example-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -565,7 +563,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "YangNavigationHelper/VC/YangNavigationHelper_Example-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

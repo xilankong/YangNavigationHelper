@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import YangNavigationHelper
 
 class PRTabBarController: UITabBarController {
 
