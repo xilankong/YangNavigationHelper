@@ -29,6 +29,7 @@ class SkillViewController: UIViewController {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+        self.navigationController?.navigationBar.rt
     }
     
     override func didReceiveMemoryWarning() {

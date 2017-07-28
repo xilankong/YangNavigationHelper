@@ -17,5 +17,4 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'YangNavigationHelper/Classes/**/*'
   s.resource = 'YangNavigationHelper/Assets/*'
-
 end

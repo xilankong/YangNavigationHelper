@@ -11,7 +11,6 @@
 
 #import "RTRootNavigationController.h"
 #import "UIViewController+RTRootNavigationController.h"
-#import "UINavigationBar+Custom.h"
 #import "UIViewController+NavigationBar.h"
 #import "UINavigationItem+Custom.h"
 
