@@ -34,6 +34,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         initUI()
         self.automaticallyAdjustsScrollViewInsets = false
+        self.navigationController?.navigationBar.isTranslucent = true
     }
 
     func initUI() {
