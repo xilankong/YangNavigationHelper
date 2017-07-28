@@ -1,14 +1,14 @@
 //
-//  UINavigationBar+Awesome.m
+//  UINavigationBar+Custom.m
 //
 //  Created by yanghuang on 2017/6/24.
 //  Copyright © 2017年 com.yang. All rights reserved.
 //
 
-#import "UINavigationBar+Awesome.h"
+#import "UINavigationBar+Custom.h"
 #import <objc/runtime.h>
 
-@implementation UINavigationBar (Awesome)
+@implementation UINavigationBar (Custom)
 static char overlayKey;
 static char overlayLineKey;
 
@@ -34,7 +34,7 @@ static char overlayLineKey;
     objc_setAssociatedObject(self, &overlayLineKey, overlayLine, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)lt_setBackgroundColor:(UIColor *)backgroundColor
+- (void)rt_setBackgroundColor:(UIColor *)backgroundColor
 {
     if (!self.overlay) {
         [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
@@ -48,23 +48,45 @@ static char overlayLineKey;
         self.overlayLine.userInteractionEnabled = NO;
         
         [self.overlay addSubview:self.overlayLine];
+        self.backgroundColor = backgroundColor;
         [[self.subviews firstObject] insertSubview:self.overlay atIndex:0];
     }
     self.overlay.backgroundColor = backgroundColor;
 }
-- (void)lt_setLineColor:(UIColor *)color {
+- (void)rt_setLineColor:(UIColor *)color {
     if (self.overlayLine) {
         self.overlayLine.backgroundColor = color;
+    } else {
+        [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+        self.shadowImage = [UIImage new];
+        UIImage *line = [self rt_imageWithColor:color withSize:CGSizeMake(CGRectGetWidth(self.bounds), 1.0 / [UIScreen mainScreen].scale)];
+        [self setShadowImage:line];
     }
 }
 
-- (void)lt_setTranslationY:(CGFloat)translationY
+- (void)rt_setTranslationY:(CGFloat)translationY
 {
-    self.transform = CGAffineTransformMakeTranslation(0, translationY);
+    /**
+     _UIBarBackground属于动态部署,根据navigationBar的位置不一样，会自动做出调整
+     目的: 我们需要把overlay插入_UIBarBackground 所以 _UIBarBackground需要按规律来变更frame
+     key: _UIBarBackground.height +_UIBarBackground.y = 44（不管怎么变，这个值不会改）
+     注意点: 当navigation刷新的时候 _UIBarBackground.height会进行frame上的变化,并且刷新后 _UIBarBackground的frame不再变成原样\不再根据navigationBar的translationY变化。
+     解决: 根据当前 navigationBar 的y值 正负区分处理。保证 _UIBarBackground.height +_UIBarBackground.y = 44
+     */
     
+    self.transform = CGAffineTransformMakeTranslation(0, translationY);
+    CGFloat selfY = -(64 + translationY);
+    
+    UIView *barbg = [self.subviews firstObject];
+    if (selfY > 0) {
+        barbg.frame = CGRectMake(0, 0, barbg.frame.size.width,44);
+    } else {
+        barbg.frame = CGRectMake(0, 44 + selfY, barbg.frame.size.width,-selfY);
+    }
+    self.overlay.frame = CGRectMake(0, 0, self.frame.size.width,barbg.frame.size.height);
 }
 
-- (void)lt_setElementsAlpha:(CGFloat)alpha
+- (void)rt_setElementsAlpha:(CGFloat)alpha
 {
     [[self valueForKey:@"_leftViews"] enumerateObjectsUsingBlock:^(UIView *view, NSUInteger i, BOOL *stop) {
         view.alpha = alpha;
@@ -87,11 +109,22 @@ static char overlayLineKey;
     }];
 }
 
-- (void)lt_reset
+- (void)rt_reset
 {
     [self setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [self.overlay removeFromSuperview];
     self.overlay = nil;
 }
 
+- (UIImage *)rt_imageWithColor:(UIColor *)color withSize:(CGSize)size
+{
+    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
 @end

@@ -19,6 +19,8 @@ class DetialViewController: UIViewController {
         scrollview.contentSize = CGSize(width: App.screenWidth, height: 1000)
         view.addSubview(scrollview)
         self.automaticallyAdjustsScrollViewInsets = false
+        
+        self.rt_setNavigationBottomLineColor(UIColor.red)
     }
 
     override func didReceiveMemoryWarning() {

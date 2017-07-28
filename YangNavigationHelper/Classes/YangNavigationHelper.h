@@ -11,7 +11,10 @@
 
 #import "RTRootNavigationController.h"
 #import "UIViewController+RTRootNavigationController.h"
-#import "UINavigationBar+Awesome.h"
-#import "UIViewController+RTNavigationBar.h"
+#import "UINavigationBar+Custom.h"
+#import "UIViewController+NavigationBar.h"
+#import "UINavigationItem+Custom.h"
+
+#define NavBundle [NSBundle bundleForClass:RTRootNavigationController.class]
 
 #endif /* YangNavigationHelper_h */

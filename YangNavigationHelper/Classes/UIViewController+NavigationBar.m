@@ -6,14 +6,16 @@
 //  Copyright © 2017年 com.yang. All rights reserved.
 //
 
-#import "UIViewController+RTNavigationBar.h"
+#import "UIViewController+NavigationBar.h"
 #import <objc/runtime.h>
+#import "YangNavigationHelper.h"
+
 #define textColor [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0]
 #define lineColor [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]
 
 static NSInteger const kCATCustomExcludeAlphaTag = 999012;
 
-@implementation UIViewController (RTNavigationBar)
+@implementation UIViewController (NavigationBar)
 @dynamic rt_lightContentBar;
 @dynamic rt_backButton;
 
@@ -40,18 +42,12 @@ static NSInteger const kCATCustomExcludeAlphaTag = 999012;
     hisButton.frame = CGRectMake(0, 0, 25, 25);
     [hisButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     
-    NSBundle*myBundle = [NSBundle bundleForClass:RTRootNavigationController.class];
-    
     if (self.preferredStatusBarStyle == UIStatusBarStyleLightContent) {
-        NSString *nav_back_nor = [myBundle pathForResource:@"nav_back_nor" ofType:@"png"];
-        NSString *nav_back_pre = [myBundle pathForResource:@"nav_back_pre" ofType:@"png"];
-        [hisButton setImage:[UIImage imageWithContentsOfFile:nav_back_nor] forState:UIControlStateNormal];
-        [hisButton setImage:[UIImage imageWithContentsOfFile:nav_back_pre] forState:UIControlStateSelected];
+        [hisButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:NavBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+        [hisButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:NavBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
     } else {
-        
-        NSString *black_nor = [myBundle pathForResource:@"black_nor" ofType:@"png"];
-        [hisButton setImage:[UIImage imageWithContentsOfFile:black_nor] forState:UIControlStateNormal];
-        [hisButton setImage:[UIImage imageWithContentsOfFile:black_nor] forState:UIControlStateSelected];
+        [hisButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:NavBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+        [hisButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:NavBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
     }
     [hisButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     self.rt_backButton = hisButton;
@@ -66,47 +62,54 @@ static NSInteger const kCATCustomExcludeAlphaTag = 999012;
     }
 }
 
-- (void)rt_navigationBackgroundColor:(UIColor *)color {
-    [self.navigationController.navigationBar lt_setBackgroundColor:color];
+- (void)rt_setNavigationBackgroundColor:(UIColor *)color {
+    [self.navigationController.navigationBar rt_setBackgroundColor:color];
 }
 
-- (void)rt_navigationTranslationY:(CGFloat)positionY {
-    [self.navigationController.navigationBar lt_setTranslationY:positionY];
+- (void)rt_setNavigationTranslationY:(CGFloat)positionY {
+    [self.navigationController.navigationBar rt_setTranslationY:positionY];
+}
+
+- (void)rt_setNavigationElementsAlpha:(CGFloat)alpha {
+    [self.navigationController.navigationBar rt_setElementsAlpha:alpha];
 }
 
 #pragma mark 用于一些有透明头部的页面滑动时产生的statusBar色值影响的变更。
 
-- (void)rt_navigationStatusBarStatus:(UIStatusBarStyle)style {
+- (void)rt_setNavigationStatusBarStatus:(UIStatusBarStyle)style {
     if (style == [self preferredStatusBarStyle]) {
         return;
     }
-    
-    NSBundle*myBundle = [NSBundle bundleForClass:RTRootNavigationController.class];
     if (style == UIStatusBarStyleDefault) {
         if (self.navigationController) {
             self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : textColor};
             self.rt_lightContentBar = NO;
-            [self.navigationController.navigationBar lt_setLineColor:lineColor];
+            [self.navigationController.navigationBar rt_setLineColor:lineColor];
             if (self.rt_backButton) {
-                NSString *black_nor = [myBundle pathForResource:@"black_nor" ofType:@"png"];
-                [self.rt_backButton setImage:[UIImage imageWithContentsOfFile:black_nor] forState:UIControlStateNormal];
-                [self.rt_backButton setImage:[UIImage imageWithContentsOfFile:black_nor] forState:UIControlStateSelected];
+                [self.rt_backButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:NavBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+                [self.rt_backButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:NavBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
             }
         }
     } else {
         if (self.navigationController) {
             self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor  whiteColor]};
             self.rt_lightContentBar = YES;
-            [self.navigationController.navigationBar lt_setLineColor:[UIColor clearColor]];
+            [self.navigationController.navigationBar rt_setLineColor:[UIColor clearColor]];
             if (self.rt_backButton) {
-                NSString *nav_back_nor = [myBundle pathForResource:@"nav_back_nor" ofType:@"png"];
-                NSString *nav_back_pre = [myBundle pathForResource:@"nav_back_pre" ofType:@"png"];
-                [self.rt_backButton setImage:[UIImage imageWithContentsOfFile:nav_back_nor] forState:UIControlStateNormal];
-                [self.rt_backButton setImage:[UIImage imageWithContentsOfFile:nav_back_pre] forState:UIControlStateSelected];
+                [self.rt_backButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:NavBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+                [self.rt_backButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:NavBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
             }
         }
     }
     [self setNeedsStatusBarAppearanceUpdate];
+}
+
+- (void)rt_setNavigationBottomLineColor:(UIColor *)color {
+    [self.navigationController.navigationBar rt_setLineColor:color];
+}
+
+- (void)rt_resetNavigation {
+    [self.navigationController.navigationBar rt_reset];
 }
 
 @end
