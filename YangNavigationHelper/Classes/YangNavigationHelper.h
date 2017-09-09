@@ -9,11 +9,11 @@
 #ifndef YangNavigationHelper_h
 #define YangNavigationHelper_h
 
-#import "RTRootNavigationController.h"
-#import "UIViewController+RTRootNavigationController.h"
-#import "UIViewController+NavigationBar.h"
+#import "YangRootNavigationController.h"
+#import "UIViewController+YangRootNavigationController.h"
+#import "UINavigationBar+Custom.h"
 #import "UINavigationItem+Custom.h"
 
-#define NavBundle [NSBundle bundleForClass:RTRootNavigationController.class]
+#define NavBundle [NSBundle bundleForClass:YangRootNavigationController.class]
 
 #endif /* YangNavigationHelper_h */

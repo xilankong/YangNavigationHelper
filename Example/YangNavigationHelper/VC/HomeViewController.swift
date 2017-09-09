@@ -38,8 +38,8 @@ class HomeViewController: UIViewController {
     }
 
     func initUI() {
-        self.rt_setNavigationBackgroundColor(UIColor(white: 1, alpha: 0))
-        self.rt_setNavigationStatusBarStatus(.lightContent)
+        self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: 0))
+        self.yang_setNavigationStatusBarStatus(.lightContent)
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(self.view)
@@ -100,18 +100,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UIScro
         }
         
         if (scrollView.contentOffset.y < (HomeViewController.tableViewHeadHight - App.navHeight - HomeViewController.triggerMargin)){
-            self.rt_setNavigationBackgroundColor(UIColor(white: 1, alpha: 0))
-            self.rt_setNavigationStatusBarStatus(.lightContent)
+            self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: 0))
+            self.yang_setNavigationStatusBarStatus(.lightContent)
             self.title = ""
         }else if (scrollView.contentOffset.y >= (HomeViewController.tableViewHeadHight - App.navHeight - HomeViewController.triggerMargin) && scrollView.contentOffset.y <= (HomeViewController.tableViewHeadHight - App.navHeight) ){
             let alpha = ((scrollView.contentOffset.y - (HomeViewController.tableViewHeadHight - App.navHeight - HomeViewController.triggerMargin)) / HomeViewController.triggerMargin)
 
-            self.rt_setNavigationBackgroundColor(UIColor(white: 1, alpha: alpha))
-            self.rt_setNavigationStatusBarStatus(.default)
+            self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: alpha))
+            self.yang_setNavigationStatusBarStatus(.default)
             self.title = ""
         }else if (scrollView.contentOffset.y > (HomeViewController.tableViewHeadHight - App.navHeight)){
-            self.rt_setNavigationBackgroundColor(UIColor(white: 1, alpha: 1))
-            self.rt_setNavigationStatusBarStatus(.default)
+            self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: 1))
+            self.yang_setNavigationStatusBarStatus(.default)
             self.title = "HOME"
         }
     }

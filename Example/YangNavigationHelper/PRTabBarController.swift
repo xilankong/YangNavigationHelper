@@ -19,10 +19,10 @@ class PRTabBarController: UITabBarController {
     func initUI() {
         
         let skillVC = SkillViewController()
-        let skillNV = RTContainerNavigationController(rootViewController: skillVC)
+        let skillNV = YangContainerNavigationController(rootViewController: skillVC)
         
         let aboutmeVC = AboutMeViewController()
-        let aboutmeNV = RTContainerNavigationController(rootViewController: aboutmeVC)
+        let aboutmeNV = YangContainerNavigationController(rootViewController: aboutmeVC)
         
         let array = [aboutmeNV, skillNV]
         let names = ["me", "skill"]
@@ -39,7 +39,7 @@ class PRTabBarController: UITabBarController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         
-        guard let nav = self.childViewControllers[self.selectedIndex] as? RTContainerNavigationController, let topVc = nav.topViewController else {
+        guard let nav = self.childViewControllers[self.selectedIndex] as? YangContainerNavigationController, let topVc = nav.topViewController else {
             return self.childViewControllers[self.selectedIndex].preferredStatusBarStyle
         }
         return topVc.preferredStatusBarStyle

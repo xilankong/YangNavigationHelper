@@ -21,7 +21,7 @@ class PRViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func rt_customBackItem(withTarget target: Any!, action: Selector!) -> UIBarButtonItem! {
+    override func yang_customBackItem(withTarget target: Any!, action: Selector!) -> UIBarButtonItem! {
         let backButton = UIButton(type: UIButtonType.custom)
         backButton.tag = customItemTag
         backButton.frame = CGRect(x: 0, y: 0, width: 25, height: 25)

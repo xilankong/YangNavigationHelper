@@ -1,20 +1,21 @@
-// 原作： rickytan <ricky.tan.xin@gmail.com>
 //
-// 在原基础上进行添加适用
+//  YangRootNavigationController.m
+//
+//  Created by yanghuang on 2017/9/4.
+//  Copyright © 2017年 Yang. All rights reserved.
+//
 
+#import "YangRootNavigationController.h"
+#import "UIViewController+YangRootNavigationController.h"
 #import <objc/runtime.h>
 
-#import "RTRootNavigationController.h"
 
-#import "UIViewController+RTRootNavigationController.h"
-
-
-@interface NSArray<ObjectType> (RTRootNavigationController)
+@interface NSArray<ObjectType> (YangRootNavigationController)
 - (NSArray *)rt_map:(id(^)(ObjectType obj, NSUInteger index))block;
 - (BOOL)rt_any:(BOOL(^)(ObjectType obj))block;
 @end
 
-@implementation NSArray (RTRootNavigationController)
+@implementation NSArray (YangRootNavigationController)
 
 - (NSArray *)rt_map:(id (^)(id obj, NSUInteger index))block
 {
@@ -49,7 +50,7 @@
 @end
 
 
-@interface RTContainerController ()
+@interface YangContainerController ()
 @property (nonatomic, strong) __kindof UIViewController *contentViewController;
 @property (nonatomic, strong) UINavigationController *containerNavigationController;
 
@@ -71,20 +72,20 @@
 @end
 
 
-static inline UIViewController *RTSafeUnwrapViewController(UIViewController *controller) {
-    if ([controller isKindOfClass:[RTContainerController class]]) {
-        return ((RTContainerController *)controller).contentViewController;
+static inline UIViewController *YangSafeUnwrapViewController(UIViewController *controller) {
+    if ([controller isKindOfClass:[YangContainerController class]]) {
+        return ((YangContainerController *)controller).contentViewController;
     }
     return controller;
 }
 
-__attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller,
+__attribute((overloadable)) static inline UIViewController *YangSafeWrapViewController(UIViewController *controller,
                                                                                      Class navigationBarClass,
                                                                                      BOOL withPlaceholder,
                                                                                      UIBarButtonItem *backItem,
                                                                                      NSString *backTitle) {
-    if (![controller isKindOfClass:[RTContainerController class]]) {
-        return [RTContainerController containerControllerWithController:controller
+    if (![controller isKindOfClass:[YangContainerController class]]) {
+        return [YangContainerController containerControllerWithController:controller
                                                      navigationBarClass:navigationBarClass
                                               withPlaceholderController:withPlaceholder
                                                       backBarButtonItem:backItem
@@ -93,21 +94,21 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return controller;
 }
 
-__attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller, Class navigationBarClass, BOOL withPlaceholder) {
-    if (![controller isKindOfClass:[RTContainerController class]]) {
-        return [RTContainerController containerControllerWithController:controller
+__attribute((overloadable)) static inline UIViewController *YangSafeWrapViewController(UIViewController *controller, Class navigationBarClass, BOOL withPlaceholder) {
+    if (![controller isKindOfClass:[YangContainerController class]]) {
+        return [YangContainerController containerControllerWithController:controller
                                                      navigationBarClass:navigationBarClass
                                               withPlaceholderController:withPlaceholder];
     }
     return controller;
 }
 
-__attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller, Class navigationBarClass) {
-    return RTSafeWrapViewController(controller, navigationBarClass, NO);
+__attribute((overloadable)) static inline UIViewController *YangSafeWrapViewController(UIViewController *controller, Class navigationBarClass) {
+    return YangSafeWrapViewController(controller, navigationBarClass, NO);
 }
 
 
-@implementation RTContainerController
+@implementation YangContainerController
 
 + (instancetype)containerControllerWithController:(UIViewController *)controller
 {
@@ -151,15 +152,9 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 {
     self = [super init];
     if (self) {
-        // not work while push to a hideBottomBar view controller, give up
-        /*
-         self.edgesForExtendedLayout = UIRectEdgeAll;
-         self.extendedLayoutIncludesOpaqueBars = YES;
-         self.automaticallyAdjustsScrollViewInsets = NO;
-         */
         
         self.contentViewController = controller;
-        self.containerNavigationController = [[RTContainerNavigationController alloc] initWithNavigationBarClass:navigationBarClass
+        self.containerNavigationController = [[YangContainerNavigationController alloc] initWithNavigationBarClass:navigationBarClass
                                                                                                     toolbarClass:nil];
         if (yesOrNo) {
             UIViewController *vc = [UIViewController new];
@@ -217,8 +212,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     if (self.containerNavigationController) {
         self.containerNavigationController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [self.view addSubview:self.containerNavigationController.view];
-        
-        // fix issue #16 https://github.com/rickytan/RTRootNavigationController/issues/16
         self.containerNavigationController.view.frame = self.view.bounds;
     }
     else {
@@ -231,9 +224,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    
-    // remove the following to fix issue #16 https://github.com/rickytan/RTRootNavigationController/issues/16
-    // self.containerNavigationController.view.frame = self.view.bounds;
 }
 
 - (BOOL)becomeFirstResponder
@@ -316,34 +306,27 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return self.contentViewController.tabBarItem;
 }
 
-#if RT_INTERACTIVE_PUSH
-- (nullable __kindof UIViewController *)rt_nextSiblingController
-{
-    return self.contentViewController.rt_nextSiblingController;
-}
-#endif
-
 @end
 
-@interface UIViewController (RTContainerNavigationController)
-@property (nonatomic, assign, readonly) BOOL rt_hasSetInteractivePop;
+@interface UIViewController (YangContainerNavigationController)
+@property (nonatomic, assign, readonly) BOOL yang_hasSetInteractivePop;
 @end
 
-@implementation UIViewController (RTContainerNavigationController)
+@implementation UIViewController (YangContainerNavigationController)
 
-- (BOOL)rt_hasSetInteractivePop
+- (BOOL)yang_hasSetInteractivePop
 {
-    return !!objc_getAssociatedObject(self, @selector(rt_disableInteractivePop));
+    return !!objc_getAssociatedObject(self, @selector(yang_disableInteractivePop));
 }
 
 @end
 
 
-@implementation RTContainerNavigationController
+@implementation YangContainerNavigationController
 
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController
 {
-    self = [super initWithNavigationBarClass:rootViewController.rt_navigationBarClass
+    self = [super initWithNavigationBarClass:rootViewController.yang_navigationBarClass
                                 toolbarClass:nil];
     if (self) {
         [self pushViewController:rootViewController animated:NO];
@@ -360,7 +343,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     //self.interactivePopGestureRecognizer.delegate = nil;
     self.interactivePopGestureRecognizer.enabled = NO;
     
-    if (self.rt_navigationController.transferNavigationBarAttributes) {
+    if (self.yang_navigationController.transferNavigationBarAttributes) {
         self.navigationBar.translucent     = self.navigationController.navigationBar.isTranslucent;
         self.navigationBar.tintColor       = self.navigationController.navigationBar.tintColor;
         self.navigationBar.barTintColor    = self.navigationController.navigationBar.barTintColor;
@@ -383,13 +366,13 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (UITabBarController *)tabBarController
 {
     UITabBarController *tabController = [super tabBarController];
-    RTRootNavigationController *navigationController = self.rt_navigationController;
+    YangRootNavigationController *navigationController = self.yang_navigationController;
     if (tabController) {
         if (navigationController.tabBarController != tabController) {   // Tab is child of Root VC
             return tabController;
         }
         else {
-            return !tabController.tabBar.isTranslucent || [navigationController.rt_viewControllers rt_any:^BOOL(__kindof UIViewController *obj) {
+            return !tabController.tabBar.isTranslucent || [navigationController.yang_viewControllers rt_any:^BOOL(__kindof UIViewController *obj) {
                 return obj.hidesBottomBarWhenPushed;
             }] ? nil : tabController;
         }
@@ -483,20 +466,28 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (void)setNavigationBarHidden:(BOOL)hidden animated:(BOOL)animated
 {
     [super setNavigationBarHidden:hidden animated:animated];
-    if (!self.visibleViewController.rt_hasSetInteractivePop) {
-        self.visibleViewController.rt_disableInteractivePop = hidden;
+    if (!self.visibleViewController.yang_hasSetInteractivePop) {
+        self.visibleViewController.yang_disableInteractivePop = hidden;
     }
+}
+
+//解决获取viewControllers问题
+- (NSArray<UIViewController *> *)viewControllers {
+    if (self.navigationController) {
+        return self.navigationController.viewControllers;
+    }
+    return [super viewControllers];
 }
 
 @end
 
 
-@interface RTRootNavigationController () <UINavigationControllerDelegate, UIGestureRecognizerDelegate>
-@property (nonatomic, weak) id<UINavigationControllerDelegate> rt_delegate;
+@interface YangRootNavigationController () <UINavigationControllerDelegate, UIGestureRecognizerDelegate>
+@property (nonatomic, weak) id<UINavigationControllerDelegate> yang_delegate;
 @property (nonatomic, copy) void(^animationBlock)(BOOL finished);
 @end
 
-@implementation RTRootNavigationController
+@implementation YangRootNavigationController
 
 #pragma mark - Methods
 
@@ -539,7 +530,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController
 {
-    self = [super initWithRootViewController:RTSafeWrapViewController(rootViewController, rootViewController.rt_navigationBarClass)];
+    self = [super initWithRootViewController:YangSafeWrapViewController(rootViewController, rootViewController.yang_navigationBarClass)];
     if (self) {
         [self _commonInit];
     }
@@ -548,10 +539,10 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (instancetype)initWithRootViewControllerNoWrapping:(UIViewController *)rootViewController
 {
-    self = [super initWithRootViewController:[[RTContainerController alloc] initWithContentController:rootViewController]];
+    self = [super initWithRootViewController:[[YangContainerController alloc] initWithContentController:rootViewController]];
     if (self) {
-//        [super pushViewController:rootViewController
-//                         animated:NO];
+        //        [super pushViewController:rootViewController
+        //                         animated:NO];
         [self _commonInit];
     }
     return self;
@@ -595,33 +586,34 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     // Override to protect
 }
 
+//跳转断点处
 - (void)pushViewController:(UIViewController *)viewController
                   animated:(BOOL)animated
 {
     if (self.viewControllers.count > 0) {
-        UIViewController *currentLast = RTSafeUnwrapViewController(self.viewControllers.lastObject);
-        [super pushViewController:RTSafeWrapViewController(viewController,
-                                                           viewController.rt_navigationBarClass,
+        UIViewController *currentLast = YangSafeUnwrapViewController(self.viewControllers.lastObject);
+        [super pushViewController:YangSafeWrapViewController(viewController,
+                                                           viewController.yang_navigationBarClass,
                                                            self.useSystemBackBarButtonItem,
                                                            currentLast.navigationItem.backBarButtonItem,
                                                            currentLast.title)
                          animated:animated];
     }
     else {
-        [super pushViewController:RTSafeWrapViewController(viewController, viewController.rt_navigationBarClass)
+        [super pushViewController:YangSafeWrapViewController(viewController, viewController.yang_navigationBarClass)
                          animated:animated];
     }
 }
 
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated
 {
-    return RTSafeUnwrapViewController([super popViewControllerAnimated:animated]);
+    return YangSafeUnwrapViewController([super popViewControllerAnimated:animated]);
 }
 
 - (NSArray<__kindof UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated
 {
     return [[super popToRootViewControllerAnimated:animated] rt_map:^id(__kindof UIViewController *obj, NSUInteger index) {
-        return RTSafeUnwrapViewController(obj);
+        return YangSafeUnwrapViewController(obj);
     }];
 }
 
@@ -630,7 +622,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 {
     __block UIViewController *controllerToPop = nil;
     [[super viewControllers] enumerateObjectsUsingBlock:^(__kindof UIViewController * obj, NSUInteger idx, BOOL * stop) {
-        if (RTSafeUnwrapViewController(obj) == viewController) {
+        if (YangSafeUnwrapViewController(obj) == viewController) {
             controllerToPop = obj;
             *stop = YES;
         }
@@ -638,7 +630,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     if (controllerToPop) {
         return [[super popToViewController:controllerToPop
                                   animated:animated] rt_map:^id(__kindof UIViewController * obj, __unused NSUInteger index) {
-            return RTSafeUnwrapViewController(obj);
+            return YangSafeUnwrapViewController(obj);
         }];
     }
     return nil;
@@ -649,21 +641,21 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 {
     [super setViewControllers:[viewControllers rt_map:^id(__kindof UIViewController * obj,  NSUInteger index) {
         if (self.useSystemBackBarButtonItem && index > 0) {
-            return RTSafeWrapViewController(obj,
-                                            obj.rt_navigationBarClass,
+            return YangSafeWrapViewController(obj,
+                                            obj.yang_navigationBarClass,
                                             self.useSystemBackBarButtonItem,
                                             viewControllers[index - 1].navigationItem.backBarButtonItem,
                                             viewControllers[index - 1].title);
         }
         else
-            return RTSafeWrapViewController(obj, obj.rt_navigationBarClass);
+            return YangSafeWrapViewController(obj, obj.yang_navigationBarClass);
     }]
                      animated:animated];
 }
 
 - (void)setDelegate:(id<UINavigationControllerDelegate>)delegate
 {
-    self.rt_delegate = delegate;
+    self.yang_delegate = delegate;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -701,30 +693,30 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     if ([super respondsToSelector:aSelector]) {
         return YES;
     }
-    return [self.rt_delegate respondsToSelector:aSelector];
+    return [self.yang_delegate respondsToSelector:aSelector];
 }
 
 - (id)forwardingTargetForSelector:(SEL)aSelector
 {
-    return self.rt_delegate;
+    return self.yang_delegate;
 }
 
 #pragma mark - Public Methods
 
-- (UIViewController *)rt_topViewController
+- (UIViewController *)yang_topViewController
 {
-    return RTSafeUnwrapViewController([super topViewController]);
+    return YangSafeUnwrapViewController([super topViewController]);
 }
 
-- (UIViewController *)rt_visibleViewController
+- (UIViewController *)yang_visibleViewController
 {
-    return RTSafeUnwrapViewController([super visibleViewController]);
+    return YangSafeUnwrapViewController([super visibleViewController]);
 }
 
-- (NSArray <__kindof UIViewController *> *)rt_viewControllers
+- (NSArray <__kindof UIViewController *> *)yang_viewControllers
 {
     return [[super viewControllers] rt_map:^id(id obj, __unused NSUInteger index) {
-        return RTSafeUnwrapViewController(obj);
+        return YangSafeUnwrapViewController(obj);
     }];
 }
 
@@ -738,7 +730,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     NSMutableArray<__kindof UIViewController *> *controllers = [self.viewControllers mutableCopy];
     __block UIViewController *controllerToRemove = nil;
     [controllers enumerateObjectsUsingBlock:^(__kindof UIViewController * obj, NSUInteger idx, BOOL * stop) {
-        if (RTSafeUnwrapViewController(obj) == controller) {
+        if (YangSafeUnwrapViewController(obj) == controller) {
             controllerToRemove = obj;
             *stop = YES;
         }
@@ -823,21 +815,21 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 {
     BOOL isRootVC = viewController == navigationController.viewControllers.firstObject;
     if (!isRootVC) {
-        viewController = RTSafeUnwrapViewController(viewController);
+        viewController = YangSafeUnwrapViewController(viewController);
         if (!self.useSystemBackBarButtonItem && !viewController.navigationItem.leftBarButtonItem) {
-            if ([viewController respondsToSelector:@selector(rt_customBackItemWithTarget:action:)]) {
-                viewController.navigationItem.leftBarButtonItem = [viewController rt_customBackItemWithTarget:self  action:@selector(onBack:)];
+            if ([viewController respondsToSelector:@selector(yang_customBackItemWithTarget:action:)]) {
+                viewController.navigationItem.leftBarButtonItem = [viewController yang_customBackItemWithTarget:self  action:@selector(onBack:)];
             }else {
                 viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil)
-                                                 style:UIBarButtonItemStylePlain
-                                                target:self
-                                                action:@selector(onBack:)];
+                                                                                                   style:UIBarButtonItemStylePlain
+                                                                                                  target:self
+                                                                                                  action:@selector(onBack:)];
             }
         }
     }
     
-    if ([self.rt_delegate respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
-        [self.rt_delegate navigationController:navigationController
+    if ([self.yang_delegate respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
+        [self.yang_delegate navigationController:navigationController
                         willShowViewController:viewController
                                       animated:animated];
     }
@@ -848,8 +840,8 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                     animated:(BOOL)animated
 {
     BOOL isRootVC = viewController == navigationController.viewControllers.firstObject;
-    viewController = RTSafeUnwrapViewController(viewController);
-    if (viewController.rt_disableInteractivePop) {
+    viewController = YangSafeUnwrapViewController(viewController);
+    if (viewController.yang_disableInteractivePop) {
         self.interactivePopGestureRecognizer.delegate = nil;
         self.interactivePopGestureRecognizer.enabled = NO;
     } else {
@@ -858,15 +850,15 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         self.interactivePopGestureRecognizer.enabled = !isRootVC;
     }
     
-    [RTRootNavigationController attemptRotationToDeviceOrientation];
+    [YangRootNavigationController attemptRotationToDeviceOrientation];
     
     if (self.animationBlock) {
         self.animationBlock(YES);
         self.animationBlock = nil;
     }
     
-    if ([self.rt_delegate respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
-        [self.rt_delegate navigationController:navigationController
+    if ([self.yang_delegate respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
+        [self.yang_delegate navigationController:navigationController
                          didShowViewController:viewController
                                       animated:animated];
     }
@@ -875,8 +867,8 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (UIInterfaceOrientationMask)navigationControllerSupportedInterfaceOrientations:(UINavigationController *)navigationController
 {
     
-    if ([self.rt_delegate respondsToSelector:@selector(navigationControllerSupportedInterfaceOrientations:)]) {
-        return [self.rt_delegate navigationControllerSupportedInterfaceOrientations:navigationController];
+    if ([self.yang_delegate respondsToSelector:@selector(navigationControllerSupportedInterfaceOrientations:)]) {
+        return [self.yang_delegate navigationControllerSupportedInterfaceOrientations:navigationController];
     }
     return UIInterfaceOrientationMaskAll;
 }
@@ -884,8 +876,8 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (UIInterfaceOrientation)navigationControllerPreferredInterfaceOrientationForPresentation:(UINavigationController *)navigationController
 {
     
-    if ([self.rt_delegate respondsToSelector:@selector(navigationControllerPreferredInterfaceOrientationForPresentation:)]) {
-        return [self.rt_delegate navigationControllerPreferredInterfaceOrientationForPresentation:navigationController];
+    if ([self.yang_delegate respondsToSelector:@selector(navigationControllerPreferredInterfaceOrientationForPresentation:)]) {
+        return [self.yang_delegate navigationControllerPreferredInterfaceOrientationForPresentation:navigationController];
     }
     return UIInterfaceOrientationPortrait;
 }
@@ -893,8 +885,8 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (id <UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
                           interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController
 {
-    if ([self.rt_delegate respondsToSelector:@selector(navigationController:interactionControllerForAnimationController:)]) {
-        return [self.rt_delegate navigationController:navigationController
+    if ([self.yang_delegate respondsToSelector:@selector(navigationController:interactionControllerForAnimationController:)]) {
+        return [self.yang_delegate navigationController:navigationController
           interactionControllerForAnimationController:animationController];
     }
     return nil;
@@ -905,8 +897,8 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                                                 fromViewController:(UIViewController *)fromVC
                                                   toViewController:(UIViewController *)toVC
 {
-    if ([self.rt_delegate respondsToSelector:@selector(navigationController:animationControllerForOperation:fromViewController:toViewController:)]) {
-        return [self.rt_delegate navigationController:navigationController
+    if ([self.yang_delegate respondsToSelector:@selector(navigationController:animationControllerForOperation:fromViewController:toViewController:)]) {
+        return [self.yang_delegate navigationController:navigationController
                       animationControllerForOperation:operation
                                    fromViewController:fromVC
                                      toViewController:toVC];

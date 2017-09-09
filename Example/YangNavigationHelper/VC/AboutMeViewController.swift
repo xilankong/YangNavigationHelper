@@ -16,8 +16,8 @@ class AboutMeViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         self.title = "ABOUT ME"
-        self.rt_setNavigationBackgroundColor(App.navColor)
-        self.rt_setNavigationStatusBarStatus(.lightContent)
+        self.yang_setNavigationBackgroundColor(App.navColor)
+        self.yang_setNavigationStatusBarStatus(.lightContent)
         let button = UIButton(frame: CGRect(x: 150, y: 150, width: 100, height: 100))
         button.setTitle("push", for: UIControlState.normal)
         button.setTitleColor(App.navColor, for: UIControlState.normal)

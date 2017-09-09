@@ -20,7 +20,7 @@ class DetialViewController: UIViewController {
         view.addSubview(scrollview)
         self.automaticallyAdjustsScrollViewInsets = false
         
-        self.rt_setNavigationBottomLineColor(UIColor.red)
+        self.yang_setNavigationBottomLineColor(UIColor.red)
     }
 
     override func didReceiveMemoryWarning() {

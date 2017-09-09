@@ -1,46 +1,44 @@
-// 原作： rickytan <ricky.tan.xin@gmail.com>
 //
-// 在原基础上进行添加适用
-
+//  YangRootNavigationController.h
+//
+//  来自RTNavigationController、已做适配
+//  Created by yanghuang on 2017/9/4.
+//  Copyright © 2017年 Yang. All rights reserved.
+//
 
 #import <UIKit/UIKit.h>
-#if RT_INTERACTIVE_PUSH
-#import <RTInteractivePush/UINavigationController+InteractivePush.h>
-#endif
+#import "UIViewController+YangRootNavigationController.h"
 
-#import "UIViewController+RTRootNavigationController.h"
-
-
-@interface RTContainerController : UIViewController
+@interface YangContainerController : UIViewController
 @property (nonatomic, readonly, strong) __kindof UIViewController *contentViewController;
 @end
 
-
 /**
- *  @class RTContainerNavigationController
- *  @brief This Controller will forward all @a Navigation actions to its containing navigation controller, i.e. @b RTRootNavigationController.
- *  If you are using UITabBarController in your project, it's recommand to wrap it in @b RTRootNavigationController as follows:
- *  @code
-tabController.viewControllers = @[[[RTContainerNavigationController alloc] initWithRootViewController:vc1],
-                                  [[RTContainerNavigationController alloc] initWithRootViewController:vc2],
-                                  [[RTContainerNavigationController alloc] initWithRootViewController:vc3],
-                                  [[RTContainerNavigationController alloc] initWithRootViewController:vc4]];
-self.window.rootViewController = [[RTRootNavigationController alloc] initWithRootViewControllerNoWrapping:tabController];
- *  @endcode
+ *  @class YangContainerNavigationController
+ *  @brief This Controller will forward all @a Navigation actions
+ *  使用Demo
+ *  带 UITabBarController 场景：
+     tabController.viewControllers = @[[[YangContainerNavigationController alloc] initWithRootViewController:vc1],
+     [[YangContainerNavigationController alloc] initWithRootViewController:vc2],
+     [[YangContainerNavigationController alloc] initWithRootViewController:vc3],
+     [[YangContainerNavigationController alloc] initWithRootViewController:vc4]];
+     self.window.rootViewController = [[YangRootNavigationController alloc] initWithRootViewControllerNoWrapping:tabController];
+ *  普通场景：
+ 
+ *
  */
-@interface RTContainerNavigationController : UINavigationController
+@interface YangContainerNavigationController : UINavigationController
 @end
 
 
-
 /*!
- *  @class RTRootNavigationController
+ *  @class YangRootNavigationController
  *  @superclass UINavigationController
- *  @coclass RTContainerController
- *  @coclass RTContainerNavigationController
+ *  @coclass YangContainerController
+ *  @coclass YangContainerNavigationController
  */
 IB_DESIGNABLE
-@interface RTRootNavigationController : UINavigationController
+@interface YangRootNavigationController : UINavigationController
 
 /*!
  *  @brief use system original back bar item or custom back bar item returned by
@@ -55,17 +53,17 @@ IB_DESIGNABLE
 /*!
  *  @brief use this property instead of @c visibleViewController to get the current visiable content view controller
  */
-@property (nonatomic, readonly, strong) UIViewController *rt_visibleViewController;
+@property (nonatomic, readonly, strong) UIViewController *yang_visibleViewController;
 
 /*!
  *  @brief use this property instead of @c topViewController to get the content view controller on the stack top
  */
-@property (nonatomic, readonly, strong) UIViewController *rt_topViewController;
+@property (nonatomic, readonly, strong) UIViewController *yang_topViewController;
 
 /*!
  *  @brief use this property to get all the content view controllers;
  */
-@property (nonatomic, readonly, strong) NSArray <__kindof UIViewController *> *rt_viewControllers;
+@property (nonatomic, readonly, strong) NSArray <__kindof UIViewController *> *yang_viewControllers;
 
 /**
  *  Init with a root view controller without wrapping into a navigation controller
@@ -85,32 +83,32 @@ IB_DESIGNABLE
 - (void)removeViewController:(UIViewController *)controller animated:(BOOL)flag NS_REQUIRES_SUPER;
 
 /*!
- *  @brief Push a view controller and do sth. when animation is done
+ *  @brief Push 到指定控制器
  *
- *  @param viewController new view controller
- *  @param animated       use animation or not
- *  @param block          animation complete callback block
+ *  @param viewController 新控制器
+ *  @param animated       是否使用动画转场
+ *  @param block          转场完成回调
  */
 - (void)pushViewController:(UIViewController *)viewController
                   animated:(BOOL)animated
                   complete:(void(^)(BOOL finished))block;
 
 /*!
- *  @brief Pop current view controller on top with a complete handler
+ *  @brief Pop 掉当前控制器
  *
- *  @param animated       use animation or not
- *  @param block          complete handler
+ *  @param animated       是否使用动画转场
+ *  @param block          转场完成回调
  *
  *  @return The current UIViewControllers(content controller) poped from the stack
  */
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated complete:(void(^)(BOOL finished))block;
 
 /*!
- *  @brief Pop to a specific view controller with a complete handler
+ *  @brief Pop 到导航中指定控制器
  *
- *  @param viewController The view controller to pop  to
- *  @param animated       use animation or not
- *  @param block          complete handler
+ *  @param viewController 控制器
+ *  @param animated       是否使用动画转场
+ *  @param block          转场完成回调
  *
  *  @return A array of UIViewControllers(content controller) poped from the stack
  */
@@ -119,10 +117,10 @@ IB_DESIGNABLE
                                                       complete:(void(^)(BOOL finished))block;
 
 /*!
- *  @brief Pop to root view controller with a complete handler
+ *  @brief Pop 回根控制器
  *
- *  @param animated use animation or not
- *  @param block    complete handler
+ *  @param animated 是否使用动画转场
+ *  @param block    转场完成回调
  *
  *  @return A array of UIViewControllers(content controller) poped from the stack
  */

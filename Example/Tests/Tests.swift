@@ -1,6 +1,5 @@
 import UIKit
 import XCTest
-import YangNavigationHelper
 
 class Tests: XCTestCase {
     

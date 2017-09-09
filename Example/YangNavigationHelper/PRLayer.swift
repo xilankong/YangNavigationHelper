@@ -13,7 +13,7 @@ class PRLayer: NSObject {
     
     var mainWindow: UIWindow?
     var rootViewController: UIViewController?
-    var navigationController: RTRootNavigationController?
+    var navigationController: YangRootNavigationController?
     var tabBarViewController: PRTabBarController?
     
     static let layer: PRLayer = PRLayer()
@@ -27,7 +27,7 @@ class PRLayer: NSObject {
     func createObjects() {
         mainWindow = UIWindow(frame: UIScreen.main.bounds)
         tabBarViewController = PRTabBarController()
-        navigationController = RTRootNavigationController(rootViewControllerNoWrapping: PRTabBarController())
+        navigationController = YangRootNavigationController(rootViewControllerNoWrapping: PRTabBarController())
         navigationController?.navigationBar.isTranslucent = false
         rootViewController = navigationController
     }

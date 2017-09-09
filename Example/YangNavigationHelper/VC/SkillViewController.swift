@@ -24,8 +24,8 @@ class SkillViewController: UIViewController {
     }
     
     func initUI() {
-        self.rt_setNavigationBackgroundColor(App.navColor)
-        self.rt_setNavigationStatusBarStatus(.lightContent)
+        self.yang_setNavigationBackgroundColor(App.navColor)
+        self.yang_setNavigationStatusBarStatus(.lightContent)
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
@@ -61,6 +61,6 @@ extension SkillViewController: UITableViewDelegate, UITableViewDataSource, UIScr
             } else if height > 0 {
                 height = 0
             }
-            self.rt_setNavigationTranslationY(height)
+//            self.yang_setNavigationTranslationY(height)
     }
 }
