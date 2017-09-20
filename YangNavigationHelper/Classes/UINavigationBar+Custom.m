@@ -7,6 +7,7 @@
 //
 
 #import "UINavigationBar+Custom.h"
+#import "YangNavigationHelper.h"
 #import <objc/runtime.h>
 
 NSInteger const kCATCustomExcludeAlphaTag = 999012;
@@ -59,7 +60,8 @@ static char overlayLineKey;
     if (!self.overlay) {
         [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
         self.shadowImage = [UIImage new];
-        self.overlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) + 20)];
+        CGFloat topMargin = IS_IPHONE_X() ? 44 : 20;
+        self.overlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) + topMargin)];
         self.overlay.userInteractionEnabled = NO;
         self.overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth;    // Should not set `UIViewAutoresizingFlexibleHeight` !!! ???
         self.backgroundColor = backgroundColor;
@@ -81,7 +83,8 @@ static char overlayLineKey;
         self.overlayLine.backgroundColor = color;
     } else {
         if (self.overlay) {
-            self.overlayLine = [[UIView alloc]initWithFrame:CGRectMake(0, (CGRectGetHeight(self.bounds) + 20) - 1.0 / [UIScreen mainScreen].scale , CGRectGetWidth(self.bounds), 1.0 / [UIScreen mainScreen].scale)];
+            CGFloat topMargin = IS_IPHONE_X() ? 44 : 20;
+            self.overlayLine = [[UIView alloc]initWithFrame:CGRectMake(0, (CGRectGetHeight(self.bounds) + topMargin) - 1.0 / [UIScreen mainScreen].scale , CGRectGetWidth(self.bounds), 1.0 / [UIScreen mainScreen].scale)];
             self.overlayLine.userInteractionEnabled = NO;
             
             [self.overlay addSubview:self.overlayLine];

@@ -81,11 +81,11 @@
     [hisButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     
     if (self.preferredStatusBarStyle == UIStatusBarStyleLightContent) {
-        [hisButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:NavBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
-        [hisButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:NavBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
+        [hisButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+        [hisButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
     } else {
-        [hisButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:NavBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
-        [hisButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:NavBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
+        [hisButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+        [hisButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
     }
     [hisButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     self.yang_backButton = hisButton;
@@ -121,8 +121,8 @@
             self.yang_lightContentBar = NO;
             [self.navigationController.navigationBar at_setBottomLineColor:lineColor];
             if (self.yang_backButton) {
-                [self.yang_backButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:NavBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
-                [self.yang_backButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:NavBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
+                [self.yang_backButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+                [self.yang_backButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
             }
         }
     } else {
@@ -131,8 +131,8 @@
             self.yang_lightContentBar = YES;
             [self.navigationController.navigationBar at_setBottomLineColor:[UIColor clearColor]];
             if (self.yang_backButton) {
-                [self.yang_backButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:NavBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
-                [self.yang_backButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:NavBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
+                [self.yang_backButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+                [self.yang_backButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
             }
         }
     }
