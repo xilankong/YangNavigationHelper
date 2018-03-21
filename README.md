@@ -1,29 +1,15 @@
-# YangNavigationHelper
+## 导航
+
+整理大神导航，自用，需要原有导航，搜索 RTNavigationController
 
 
 
-## Example
+1、导航控制器
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+2、导航条常用扩展
 
-## Requirements
 
-IOS 7+
 
-## Installation
-
-YangNavigationHelper is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod "YangNavigationHelper"
 ```
-
-## Author
-
-
-
-- yang
-- [xilankong@126.com](mailto:xilankong@126.com)
-- [https://xilankong.github.io](https://xilankong.github.io/)
-
+pod 'JFZNetworking', :git => 'https://github.com/xilankong/YangNavigationHelper.git'
+```
