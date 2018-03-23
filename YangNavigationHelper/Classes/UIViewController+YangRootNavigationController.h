@@ -70,6 +70,11 @@ IB_DESIGNABLE
  */
 @property (nonatomic, strong, readonly) UIButton *yang_backButton;
 
+/*!
+ *  @brief 控制返回显示
+ */
+@property (nonatomic, assign) BOOL yang_hideBackButton;
+
 /**
  @brief 控制状态栏，实现 状态栏变化后自动更新导航组件色值（返回按钮色值、title文案色值）
  

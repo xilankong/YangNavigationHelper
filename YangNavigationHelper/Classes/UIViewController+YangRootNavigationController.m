@@ -56,6 +56,7 @@
 
 @dynamic yang_lightContentBar;
 @dynamic yang_backButton;
+@dynamic yang_hideBackButton;
 
 - (void)setYang_lightContentBar:(BOOL)yang_lightContentBar {
     objc_setAssociatedObject(self, @selector(yang_lightContentBar), @(yang_lightContentBar), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -71,7 +72,15 @@
 - (UIButton *)yang_backButton {
     return (UIButton *)objc_getAssociatedObject(self, @selector(yang_backButton));
 }
+-(void)setYang_hideBackButton:(BOOL)yang_hideBackButton
+{
+    objc_setAssociatedObject(self, "@selector(yang_hideBackButton)", @(yang_hideBackButton), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
+- (BOOL)yang_hideBackButton
+{
+    return [objc_getAssociatedObject(self, "@selector(yang_hideBackButton)") boolValue];
+}
 //自定义返回按钮
 - (UIBarButtonItem *)yang_customBackItemWithTarget:(id)target action:(SEL)action {
     
