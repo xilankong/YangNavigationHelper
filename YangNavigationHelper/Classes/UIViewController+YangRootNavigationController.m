@@ -84,6 +84,12 @@
 //自定义返回按钮
 - (UIBarButtonItem *)yang_customBackItemWithTarget:(id)target action:(SEL)action {
     
+    if (self.yang_hideBackButton) {
+        self.navigationItem.rightBarButtonItem = nil;
+        self.navigationItem.hidesBackButton = true;
+        self.navigationItem.backBarButtonItem = nil;
+        return nil;
+    }
     UIButton *hisButton = [UIButton buttonWithType:UIButtonTypeCustom];
     hisButton.tag = kCATCustomExcludeAlphaTag;
     hisButton.frame = CGRectMake(0, 0, 25, 25);
