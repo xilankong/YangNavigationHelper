@@ -85,7 +85,6 @@
 - (UIBarButtonItem *)yang_customBackItemWithTarget:(id)target action:(SEL)action {
     
     if (self.yang_hideBackButton) {
-        self.navigationItem.rightBarButtonItem = nil;
         self.navigationItem.hidesBackButton = true;
         self.navigationItem.backBarButtonItem = nil;
         return nil;
