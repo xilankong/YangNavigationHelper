@@ -12,6 +12,7 @@ class ModalViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "modalVC"
         view.backgroundColor = UIColor.white
         let button2 = UIButton(frame: CGRect(x: 50, y: 150, width: 100, height: 100))
         button2.setTitle("back", for: UIControlState.normal)

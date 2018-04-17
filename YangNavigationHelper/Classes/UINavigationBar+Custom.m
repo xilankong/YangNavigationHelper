@@ -1,8 +1,8 @@
 //
-//  UINavigationBar+JFZCustom.m
+//  UINavigationBar+Custom.m
 //  Pods
 //
-//  Created by lben on 6/15/16.
+//  Created by yanghuang on 6/15/16.
 //
 //
 
@@ -12,7 +12,7 @@
 
 NSInteger const kCATCustomExcludeAlphaTag = 999012;
 
-@implementation UIImage (JFZCustom)
+@implementation UIImage (Custom)
 
 + (UIImage *)at_imageWithColor:(UIColor *)color withSize:(CGSize)size
 {
@@ -28,7 +28,7 @@ NSInteger const kCATCustomExcludeAlphaTag = 999012;
 
 @end
 
-@implementation UINavigationBar (JFZCustom)
+@implementation UINavigationBar (Custom)
 static char overlayKey;
 static char overlayLineKey;
 
@@ -64,7 +64,7 @@ static char overlayLineKey;
         self.overlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) + topMargin)];
         self.overlay.userInteractionEnabled = NO;
         self.overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth;    // Should not set `UIViewAutoresizingFlexibleHeight` !!! ???
-        self.backgroundColor = backgroundColor;
+        self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.0];
         [[self.subviews firstObject] insertSubview:self.overlay atIndex:0];
     }
     self.overlay.backgroundColor = backgroundColor;

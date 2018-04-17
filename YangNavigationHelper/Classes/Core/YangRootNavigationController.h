@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+YangRootNavigationController.h"
 #import "YangNavigationHelper.h"
+
 @interface YangContainerController : UIViewController
 @property (nonatomic, readonly, strong) __kindof UIViewController *contentViewController;
 @end

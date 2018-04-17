@@ -33,8 +33,15 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-        self.automaticallyAdjustsScrollViewInsets = false
+        
         self.navigationController?.navigationBar.isTranslucent = true
+        self.automaticallyAdjustsScrollViewInsets = false
+        if #available(iOS 11.0, *) {
+            self.tableView.contentInsetAdjustmentBehavior = .never
+        } else {
+            // Fallback on earlier versions
+        }
+
     }
 
     func initUI() {
@@ -93,11 +100,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UIScro
     
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y < 0 {
-            if (bgImageView.image?.size.height)! > (HomeViewController.tableViewHeadHight - scrollView.contentOffset.y){
-                bgImageView.frame = CGRect(x: 0, y: scrollView.contentOffset.y, width: App.screenWidth, height: HomeViewController.tableViewHeadHight - scrollView.contentOffset.y)
-            }
-        }
         
         if (scrollView.contentOffset.y < (HomeViewController.tableViewHeadHight - App.navHeight - HomeViewController.triggerMargin)){
             self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: 0))
