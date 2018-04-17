@@ -95,11 +95,16 @@
     [hisButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     
     if (self.preferredStatusBarStyle == UIStatusBarStyleLightContent) {
-        [hisButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
-        [hisButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
+        
+        UIImage *backImage = [UIImage imageNamed:@"nav_back_white"];
+        
+        [hisButton setImage:backImage ? backImage : [UIImage imageNamed:@"whitearrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+        [hisButton setImage:backImage ? backImage : [UIImage imageNamed:@"whitearrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
     } else {
-        [hisButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
-        [hisButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
+        UIImage *backImage = [UIImage imageNamed:@"nav_back"];
+        
+        [hisButton setImage:backImage ? backImage : [UIImage imageNamed:@"blackarrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+        [hisButton setImage:backImage ? backImage : [UIImage imageNamed:@"blackarrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
     }
     [hisButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     self.yang_backButton = hisButton;
