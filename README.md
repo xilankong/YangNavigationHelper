@@ -11,5 +11,5 @@
 
 
 ```
-pod 'JFZNetworking', :git => 'https://github.com/xilankong/YangNavigationHelper.git'
+pod 'YangNavigationHelper', :git => 'https://github.com/xilankong/YangNavigationHelper.git'
 ```
