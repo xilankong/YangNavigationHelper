@@ -1,28 +1,23 @@
 PODS:
-  - Expecta (1.0.5)
-  - OCMock (3.4)
-  - SnapKit (3.2.0)
-  - Specta (1.0.6)
-  - YangNavigationHelper (1.0.0)
+  - SnapKit (4.0.1)
+  - YangNavigationHelper (1.2.0)
 
 DEPENDENCIES:
-  - Expecta
-  - OCMock
   - SnapKit
-  - Specta
   - YangNavigationHelper (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SnapKit
 
 EXTERNAL SOURCES:
   YangNavigationHelper:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
-  OCMock: 35ae71d6a8fcc1b59434d561d1520b9dd4f15765
-  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
-  Specta: f506f3a8361de16bc0dcf3b17b75e269072ba465
-  YangNavigationHelper: 6e49432b91259d27fd9459b8e9334a5046294fbf
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  YangNavigationHelper: 1f868accd15d68d0302ef934454802eed6675283
 
-PODFILE CHECKSUM: 3828f742af4b3844d421e374d1de7bd2a5cb4f79
+PODFILE CHECKSUM: dea7410c35c594e15db6dc35ae9ad13dbb1042ac
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.5.3

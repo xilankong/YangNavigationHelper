@@ -11,9 +11,9 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'xilankong' => 'xilankong@126.com' }
   s.source           = { :git => 'https://github.com/xilankong/YangNavigationHelper.git', :tag => s.version.to_s }
+  s.swift_version = '4.2'
 
-
-  s.ios.deployment_target = '7.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'YangNavigationHelper/Classes/**/*'
   s.resource = 'YangNavigationHelper/Assets/*'

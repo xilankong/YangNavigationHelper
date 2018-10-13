@@ -37,10 +37,11 @@ class PRTabBarController: UITabBarController {
         super.didReceiveMemoryWarning()
     }
     
+    //把barStyle分派到childVC
     override var preferredStatusBarStyle: UIStatusBarStyle {
         
-        guard let nav = self.childViewControllers[self.selectedIndex] as? YangContainerNavigationController, let topVc = nav.topViewController else {
-            return self.childViewControllers[self.selectedIndex].preferredStatusBarStyle
+        guard let nav = self.children[self.selectedIndex] as? YangContainerNavigationController, let topVc = nav.topViewController else {
+            return self.children[self.selectedIndex].preferredStatusBarStyle
         }
         return topVc.preferredStatusBarStyle
     }

@@ -28,7 +28,6 @@ class PRLayer: NSObject {
         mainWindow = UIWindow(frame: UIScreen.main.bounds)
         tabBarViewController = PRTabBarController()
         navigationController = YangRootNavigationController(rootViewControllerNoWrapping: PRTabBarController())
-        navigationController?.navigationBar.isTranslucent = false
         rootViewController = navigationController
     }
     
@@ -38,4 +37,5 @@ class PRLayer: NSObject {
         mainWindow?.rootViewController = navigationController
         mainWindow?.makeKeyAndVisible()
     }
+    
 }

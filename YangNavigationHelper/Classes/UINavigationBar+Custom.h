@@ -13,17 +13,35 @@ OBJC_EXTERN NSInteger const kCATCustomExcludeAlphaTag;
 
 @interface UIImage (Custom)
 
-+ (UIImage *)at_imageWithColor:(UIColor *)color withSize:(CGSize)size;
+
+/**
+ 生成色值图片
+
+ @param color 色值
+ @param size 大小
+ @return 图片
+ */
++ (UIImage *)yang_imageWithColor:(UIColor *)color withSize:(CGSize)size;
 
 @end
 
 @interface UINavigationBar (Custom)
 
-//设置背景色
-- (void)at_setBackgroundColor:(UIColor *)backgroundColor;
-//设置底部边线颜色
-- (void)at_setBottomLineColor:(UIColor *)color;
-//还原
-- (void)at_undo;
+/**
+ 设置背景色
+ @param backgroundColor 色值
+ */
+- (void)yang_setBackgroundColor:(UIColor *)backgroundColor;
+
+/**
+ 设置shadow线颜色
+ @param color 色值
+ */
+- (void)yang_setBottomLineColor:(UIColor *)color;
+
+/**
+ 还原导航条
+ */
+- (void)yang_reset;
 
 @end

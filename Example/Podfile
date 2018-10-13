@@ -6,9 +6,5 @@ target 'YangNavigationHelper_Example' do
 
   target 'YangNavigationHelper_Tests' do
     inherit! :search_paths
-    pod 'Specta'
-    pod 'Expecta'
-    pod 'OCMock'
-    
   end
 end

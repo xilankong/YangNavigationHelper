@@ -8,7 +8,7 @@
 
 #import "UIViewController+YangRootNavigationController.h"
 #import "YangRootNavigationController.h"
-#import "YangNavigationHelper.h"
+#import "YangHelper.h"
 #import <objc/runtime.h>
 
 #define textColor [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0]
@@ -121,11 +121,11 @@
 }
 
 - (void)yang_setNavigationBackgroundColor:(UIColor *)color {
-    [self.navigationController.navigationBar at_setBackgroundColor:color];
+    [self.navigationController.navigationBar yang_setBackgroundColor:color];
 }
 
 - (void)yang_setNavigationBottomLineColor:(UIColor *)color {
-    [self.navigationController.navigationBar at_setBottomLineColor:color];
+    [self.navigationController.navigationBar yang_setBottomLineColor:color];
 }
 
 #pragma mark 用于一些有透明头部的页面滑动时产生的statusBar色值影响的变更。
@@ -138,7 +138,7 @@
         if (self.navigationController) {
             self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : textColor};
             self.yang_lightContentBar = NO;
-            [self.navigationController.navigationBar at_setBottomLineColor:lineColor];
+            [self.navigationController.navigationBar yang_setBottomLineColor:lineColor];
             if (self.yang_backButton) {
                 [self.yang_backButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
                 [self.yang_backButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
@@ -148,7 +148,7 @@
         if (self.navigationController) {
             self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor  whiteColor]};
             self.yang_lightContentBar = YES;
-            [self.navigationController.navigationBar at_setBottomLineColor:[UIColor clearColor]];
+            [self.navigationController.navigationBar yang_setBottomLineColor:[UIColor clearColor]];
             if (self.yang_backButton) {
                 [self.yang_backButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
                 [self.yang_backButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
@@ -159,7 +159,7 @@
 }
 
 - (void)yang_resetNavigation {
-    [self.navigationController.navigationBar at_undo];
+    [self.navigationController.navigationBar yang_reset];
 }
 
 @end

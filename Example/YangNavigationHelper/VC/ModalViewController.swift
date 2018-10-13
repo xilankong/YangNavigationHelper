@@ -15,21 +15,21 @@ class ModalViewController: UIViewController {
         title = "modalVC"
         view.backgroundColor = UIColor.white
         let button2 = UIButton(frame: CGRect(x: 50, y: 150, width: 100, height: 100))
-        button2.setTitle("back", for: UIControlState.normal)
-        button2.setTitleColor(App.navColor, for: UIControlState.normal)
-        button2.addTarget(self, action: #selector(goBack), for: UIControlEvents.touchUpInside)
+        button2.setTitle("back", for: UIControl.State.normal)
+        button2.setTitleColor(App.navColor, for: UIControl.State.normal)
+        button2.addTarget(self, action: #selector(goBack), for: UIControl.Event.touchUpInside)
         view.addSubview(button2)
         let button = UIButton(frame: CGRect(x: 150, y: 150, width: 100, height: 100))
-        button.setTitle("home", for: UIControlState.normal)
-        button.setTitleColor(App.navColor, for: UIControlState.normal)
-        button.addTarget(self, action: #selector(goTo), for: UIControlEvents.touchUpInside)
+        button.setTitle("home", for: UIControl.State.normal)
+        button.setTitleColor(App.navColor, for: UIControl.State.normal)
+        button.addTarget(self, action: #selector(goTo), for: UIControl.Event.touchUpInside)
         view.addSubview(button)
     }
 
-    func goTo() {
+    @objc func goTo() {
         self.navigationController?.pushViewController(HomeViewController(), animated: true)
     }
-    func goBack() {
+    @objc func goBack() {
         self.dismiss(animated: true, completion: nil)
     }
     

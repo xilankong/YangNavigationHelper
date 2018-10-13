@@ -22,9 +22,10 @@ class App: NSObject {
         return UIColor(red: 1.0, green: 0.41, blue: 0.27, alpha: alpha)
     }
     
-    static open func methodSwizze(cls:AnyClass, originalSelector: Selector, swizzledSelector: Selector) {
-        let originalMethod = class_getInstanceMethod(cls, originalSelector)
-        let swizzleMethod = class_getInstanceMethod(cls, swizzledSelector)
+    static public func methodSwizze(cls:AnyClass, originalSelector: Selector, swizzledSelector: Selector) {
+        guard let originalMethod = class_getInstanceMethod(cls, originalSelector), let swizzleMethod = class_getInstanceMethod(cls, swizzledSelector)  else {
+            return
+        }
         
         let didAddMethod = class_addMethod(cls, originalSelector, method_getImplementation(swizzleMethod), method_getTypeEncoding(swizzleMethod))
         if didAddMethod {
@@ -33,4 +34,39 @@ class App: NSObject {
             method_exchangeImplementations(originalMethod, swizzleMethod)
         }
     }
+    
+    //是否IphoneX以上系列，判断是否有安全区域
+    
+    static func safeAreaTop() -> CGFloat {
+        if #available(iOS 11.0, *) {
+            //iOS 12.0以后的非刘海手机top为 20.0
+            if (UIApplication.shared.delegate as? AppDelegate)?.window?.safeAreaInsets.bottom == 0 {
+                return 20.0
+            }
+            return (UIApplication.shared.delegate as? AppDelegate)?.window?.safeAreaInsets.top ?? 20.0
+        }
+        return 20.0
+    }
+    
+    static func safeAreaBottom() -> CGFloat {
+        if #available(iOS 11.0, *) {
+            return (UIApplication.shared.delegate as? AppDelegate)?.window?.safeAreaInsets.bottom ?? 0
+        }
+        return 0
+    }
+    
+    static func hasSafeArea() -> Bool {
+        if #available(iOS 11.0, *) {
+            return (UIApplication.shared.delegate as? AppDelegate)?.window?.safeAreaInsets.bottom ?? CGFloat(0) > CGFloat(0)
+        } else { return false }
+    }
+    
+    static func toolBarHeight() -> CGFloat {
+        return 49 + safeAreaBottom()
+    }
+    
+    static func navigationHeight() -> CGFloat {
+        return 44 + safeAreaTop()
+    }
+    
 }

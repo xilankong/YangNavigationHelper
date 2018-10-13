@@ -340,9 +340,9 @@ __attribute((overloadable)) static inline UIViewController *YangSafeWrapViewCont
 {
     [super viewDidLoad];
     //规定基础设置
-    self.navigationBar.translucent = NO;
-    [self.navigationBar at_setBackgroundColor:[UIColor whiteColor]];
-    [self.navigationBar at_setBottomLineColor:nav_lineColor];
+//    self.navigationBar.translucent = NO;
+//    [self.navigationBar yang_setBackgroundColor:[UIColor whiteColor]];
+//    [self.navigationBar at_setBottomLineColor:nav_lineColor];
     self.interactivePopGestureRecognizer.enabled = NO;
     
     if (self.yang_navigationController.transferNavigationBarAttributes) {

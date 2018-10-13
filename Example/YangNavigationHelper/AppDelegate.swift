@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var prLayer: PRLayer?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //初始化参数方法
         initConfig()
         //初始化UI方法
@@ -29,8 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func initUI() {
         PRLayer.layer.appUIBegin()
         window = PRLayer.layer.mainWindow
-        UINavigationBar.appearance().backgroundColor = UIColor.white
-        UINavigationBar.appearance().isTranslucent = false
+//        UINavigationBar.appearance().backgroundColor = UIColor.white
+//        UINavigationBar.appearance().isTranslucent = false
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

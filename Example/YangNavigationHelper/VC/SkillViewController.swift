@@ -14,7 +14,7 @@ class SkillViewController: UIViewController {
     static let triggerMargin: CGFloat = 30
     
     lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: App.screenWidth, height: App.screenHeight - 44), style: UITableViewStyle.plain)
+        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: App.screenWidth, height: App.screenHeight - 44), style: UITableView.Style.plain)
         return tableView
     }()
     
@@ -41,7 +41,7 @@ class SkillViewController: UIViewController {
 extension SkillViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate  {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "Cell")
         cell.textLabel?.text = "123456"
         return cell
     }
