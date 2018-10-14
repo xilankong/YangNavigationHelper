@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 //导航栏中不需要隐藏的UI元素设置tag
-OBJC_EXTERN NSInteger const kCATCustomExcludeAlphaTag;
+OBJC_EXTERN NSInteger const yangOverLayerTag;
 
 @interface UIImage (Custom)
 

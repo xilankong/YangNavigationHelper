@@ -1,7 +1,7 @@
 //
 //  HomeViewController.swift
 //  PersonalResume
-//
+//  渐变色、改变状态栏、
 //  Created by yanghuang on 2017/6/9.
 //  Copyright © 2017年 com.yang. All rights reserved.
 //
@@ -33,24 +33,25 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-        
-//        self.navigationController?.navigationBar.isTranslucent = false
-//        self.automaticallyAdjustsScrollViewInsets = false
+    
         if #available(iOS 11.0, *) {
             self.tableView.contentInsetAdjustmentBehavior = .never
         } else {
              self.automaticallyAdjustsScrollViewInsets = false
         }
-
+        self.yang_hideBackButton = true
+//        放这里不行，简直是神经病，必须视图完全展示才可以
+//        self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: 0))
+//        self.yang_setNavigationStatusBarStatus(.lightContent)
+    }
+    
+    override func viewDidLayoutSubviews() {
+//        super.viewDidAppear(animated)
+        super.viewDidLayoutSubviews()
+        self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: 0))
     }
 
     func initUI() {
-//        self.navigationController?.navigationBar.barTintColor = UIColor.red.withAlphaComponent(0.5)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-//        UINavigationBar.appearance().tintColor = UIColor.red
-//        self.yang_setNavigationBackgroundColor(UIColor.red)
-//        self.yang_setNavigationStatusBarStatus(.lightContent)
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(self.view)
@@ -105,21 +106,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UIScro
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-//        if (scrollView.contentOffset.y < (HomeViewController.tableViewHeadHight - App.navHeight - HomeViewController.triggerMargin)){
-//            self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: 0))
-//            self.yang_setNavigationStatusBarStatus(.lightContent)
-//            self.title = ""
-//        }else if (scrollView.contentOffset.y >= (HomeViewController.tableViewHeadHight - App.navHeight - HomeViewController.triggerMargin) && scrollView.contentOffset.y <= (HomeViewController.tableViewHeadHight - App.navHeight) ){
-//            let alpha = ((scrollView.contentOffset.y - (HomeViewController.tableViewHeadHight - App.navHeight - HomeViewController.triggerMargin)) / HomeViewController.triggerMargin)
-//
-//            self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: alpha))
-//            self.yang_setNavigationStatusBarStatus(.default)
-//            self.title = ""
-//        }else if (scrollView.contentOffset.y > (HomeViewController.tableViewHeadHight - App.navHeight)){
-//            self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: 1))
-//            self.yang_setNavigationStatusBarStatus(.default)
-//            self.title = "HOME"
-//        }
+        if (scrollView.contentOffset.y < (HomeViewController.tableViewHeadHight - App.navHeight - HomeViewController.triggerMargin)){
+            self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: 0))
+            self.yang_setNavigationStatusBarStatus(.lightContent)
+            self.title = ""
+        }else if (scrollView.contentOffset.y >= (HomeViewController.tableViewHeadHight - App.navHeight - HomeViewController.triggerMargin) && scrollView.contentOffset.y <= (HomeViewController.tableViewHeadHight - App.navHeight) ){
+            let alpha = ((scrollView.contentOffset.y - (HomeViewController.tableViewHeadHight - App.navHeight - HomeViewController.triggerMargin)) / HomeViewController.triggerMargin)
+
+            self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: alpha))
+            self.yang_setNavigationStatusBarStatus(.default)
+            self.title = ""
+        }else if (scrollView.contentOffset.y > (HomeViewController.tableViewHeadHight - App.navHeight)){
+            self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: 1))
+            self.yang_setNavigationStatusBarStatus(.default)
+            self.title = "HOME"
+        }
     }
     
 }

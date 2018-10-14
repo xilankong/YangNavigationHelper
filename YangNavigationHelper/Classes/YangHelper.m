@@ -16,4 +16,16 @@
     return false;
 }
 
++ (NSBundle *)navigationBundle {
+    return [NSBundle bundleForClass:YangHelper.class];
+}
+
++ (UIColor *)titleColor {
+    return [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0];
+}
+
++ (UIColor *)lineColor {
+    return [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
+}
+
 @end

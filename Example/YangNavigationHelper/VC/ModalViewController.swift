@@ -25,6 +25,10 @@ class ModalViewController: UIViewController {
         button.addTarget(self, action: #selector(goTo), for: UIControl.Event.touchUpInside)
         view.addSubview(button)
     }
+    
+    override func yang_navigationBarClass() -> AnyClass! {
+        return YangNavigationBar.classForCoder()
+    }
 
     @objc func goTo() {
         self.navigationController?.pushViewController(HomeViewController(), animated: true)

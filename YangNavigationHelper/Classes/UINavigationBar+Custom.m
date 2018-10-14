@@ -10,7 +10,7 @@
 #import "YangHelper.h"
 #import <objc/runtime.h>
 
-NSInteger const kCATCustomExcludeAlphaTag = 999012;
+NSInteger const yangOverLayerTag = 999012;
 
 #pragma mark 颜色生成图片
 
@@ -32,54 +32,56 @@ NSInteger const kCATCustomExcludeAlphaTag = 999012;
 
 @implementation UINavigationBar (Custom)
 
-static char overlayKey;
-static char overlayLineKey;
+static char overlayerKey;
+static char overlayerLineKey;
 
 //颜色覆盖层
-- (UIView *)overlay {
-    return objc_getAssociatedObject(self, &overlayKey);
+- (UIView *)overlayer {
+    return objc_getAssociatedObject(self, &overlayerKey);
 }
 
-- (void)setOverlay:(UIView *)overlay {
-    objc_setAssociatedObject(self, &overlayKey, overlay, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setOverlayer:(UIView *)overlayer {
+    objc_setAssociatedObject(self, &overlayerKey, overlayer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 //底线
-- (UIView *)overlayLine {
-    return objc_getAssociatedObject(self, &overlayLineKey);
+- (UIView *)overlayerLine {
+    return objc_getAssociatedObject(self, &overlayerLineKey);
 }
 
-- (void)setOverlayLine:(UIView *)overlayLine {
-    objc_setAssociatedObject(self, &overlayLineKey, overlayLine, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setOverlayerLine:(UIView *)overlayerLine {
+    objc_setAssociatedObject(self, &overlayerLineKey, overlayerLine, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)yang_setBackgroundColor:(UIColor *)backgroundColor {
-    if (!self.overlay) {
+    if (!self.overlayer && [self.overlayer superview] != nil) {
         [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
         self.shadowImage = [UIImage new];
         CGFloat topMargin = 20.0;
         if (YangHelper.hasSafeArea) { topMargin = 44; }
-        self.overlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) + topMargin)];
-        self.overlay.userInteractionEnabled = NO;
-        self.overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth;    // Should not set `UIViewAutoresizingFlexibleHeight` !!! ???
+        self.overlayer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) + topMargin)];
+        self.overlayer.tag = yangOverLayerTag;
+        self.overlayer.userInteractionEnabled = NO;
+        self.overlayer.autoresizingMask = UIViewAutoresizingFlexibleWidth;    // Should not set `UIViewAutoresizingFlexibleHeight` !!! ???
 //        self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.0];
-        [[self.subviews firstObject] insertSubview:self.overlay atIndex:0];
+        [[self.subviews firstObject] insertSubview:self.overlayer atIndex:0];
+    } else {
+       self.overlayer.backgroundColor = backgroundColor;
     }
-    self.overlay.backgroundColor = backgroundColor;
+    
 }
 
 - (void)yang_setBottomLineColor:(UIColor *)color
 {
-    if (self.overlayLine) {
-        self.overlayLine.backgroundColor = color;
+    if (self.overlayerLine) {
+        self.overlayerLine.backgroundColor = color;
     } else {
-        if (self.overlay) {
+        if (self.overlayer) {
             CGFloat topMargin = YangHelper.hasSafeArea ? 44 : 20;
-            self.overlayLine = [[UIView alloc]initWithFrame:CGRectMake(0, (CGRectGetHeight(self.bounds) + topMargin) - 1.0 / [UIScreen mainScreen].scale , CGRectGetWidth(self.bounds), 1.0 / [UIScreen mainScreen].scale)];
-            self.overlayLine.userInteractionEnabled = NO;
-            
-            [self.overlay addSubview:self.overlayLine];
-            self.overlayLine.backgroundColor = color;
+            self.overlayerLine = [[UIView alloc]initWithFrame:CGRectMake(0, (CGRectGetHeight(self.bounds) + topMargin) - 1.0 / [UIScreen mainScreen].scale , CGRectGetWidth(self.bounds), 1.0 / [UIScreen mainScreen].scale)];
+            self.overlayerLine.userInteractionEnabled = NO;
+            [self.overlayer addSubview:self.overlayerLine];
+            self.overlayerLine.backgroundColor = color;
         } else {
             [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
             self.shadowImage = [UIImage new];
@@ -92,8 +94,8 @@ static char overlayLineKey;
 - (void)yang_reset
 {
     [self setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    [self.overlay removeFromSuperview];
-    self.overlay = nil;
+    [self.overlayer removeFromSuperview];
+    self.overlayer = nil;
 }
 
 @end

@@ -11,9 +11,6 @@
 #import "YangHelper.h"
 #import <objc/runtime.h>
 
-#define textColor [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0]
-#define lineColor [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]
-
 @implementation UIViewController (YangRootNavigationController)
 @dynamic yang_disableInteractivePop;
 
@@ -90,7 +87,7 @@
         return nil;
     }
     UIButton *hisButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    hisButton.tag = kCATCustomExcludeAlphaTag;
+    hisButton.tag = yangOverLayerTag;
     hisButton.frame = CGRectMake(0, 0, 25, 25);
     [hisButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     
@@ -98,13 +95,13 @@
         
         UIImage *backImage = [UIImage imageNamed:@"nav_back_white"];
         
-        [hisButton setImage:backImage ? backImage : [UIImage imageNamed:@"whitearrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
-        [hisButton setImage:backImage ? backImage : [UIImage imageNamed:@"whitearrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
+        [hisButton setImage:backImage ? backImage : [UIImage imageNamed:@"whitearrow" inBundle:[YangHelper navigationBundle] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+        [hisButton setImage:backImage ? backImage : [UIImage imageNamed:@"whitearrow" inBundle:[YangHelper navigationBundle] compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
     } else {
         UIImage *backImage = [UIImage imageNamed:@"nav_back"];
         
-        [hisButton setImage:backImage ? backImage : [UIImage imageNamed:@"blackarrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
-        [hisButton setImage:backImage ? backImage : [UIImage imageNamed:@"blackarrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
+        [hisButton setImage:backImage ? backImage : [UIImage imageNamed:@"blackarrow" inBundle:[YangHelper navigationBundle] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+        [hisButton setImage:backImage ? backImage : [UIImage imageNamed:@"blackarrow" inBundle:[YangHelper navigationBundle] compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
     }
     [hisButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     self.yang_backButton = hisButton;
@@ -136,12 +133,12 @@
     }
     if (style == UIStatusBarStyleDefault) {
         if (self.navigationController) {
-            self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : textColor};
+            self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [YangHelper titleColor]};
             self.yang_lightContentBar = NO;
-            [self.navigationController.navigationBar yang_setBottomLineColor:lineColor];
+            [self.navigationController.navigationBar yang_setBottomLineColor:[YangHelper lineColor]];
             if (self.yang_backButton) {
-                [self.yang_backButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
-                [self.yang_backButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
+                [self.yang_backButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:[YangHelper navigationBundle] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+                [self.yang_backButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:[YangHelper navigationBundle] compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
             }
         }
     } else {
@@ -150,8 +147,8 @@
             self.yang_lightContentBar = YES;
             [self.navigationController.navigationBar yang_setBottomLineColor:[UIColor clearColor]];
             if (self.yang_backButton) {
-                [self.yang_backButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
-                [self.yang_backButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
+                [self.yang_backButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:[YangHelper navigationBundle] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+                [self.yang_backButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:[YangHelper navigationBundle] compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
             }
         }
     }

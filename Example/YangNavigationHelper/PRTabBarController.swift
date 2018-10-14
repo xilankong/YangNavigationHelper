@@ -18,7 +18,7 @@ class PRTabBarController: UITabBarController {
 
     func initUI() {
         
-        let skillVC = SkillViewController()
+        let skillVC = HomeViewController()
         let skillNV = YangContainerNavigationController(rootViewController: skillVC)
         
         let aboutmeVC = AboutMeViewController()

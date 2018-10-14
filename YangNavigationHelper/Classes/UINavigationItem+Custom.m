@@ -15,8 +15,8 @@
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = CGRectMake(0, 0, 25, 25);
     [backButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    [backButton setImage:[UIImage imageNamed:imageName inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:hightLightImageName inBundle:navBundle compatibleWithTraitCollection:nil] forState:UIControlStateHighlighted];
+    [backButton setImage:[UIImage imageNamed:imageName inBundle:[YangHelper navigationBundle] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:hightLightImageName inBundle:[YangHelper navigationBundle] compatibleWithTraitCollection:nil] forState:UIControlStateHighlighted];
     [backButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     self.leftBarButtonItems = nil;
     self.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
