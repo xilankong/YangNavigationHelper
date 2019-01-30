@@ -48,7 +48,6 @@ class HomeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
 //        super.viewDidAppear(animated)
         super.viewDidLayoutSubviews()
-        self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: 0))
     }
 
     func initUI() {
@@ -107,18 +106,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UIScro
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         if (scrollView.contentOffset.y < (HomeViewController.tableViewHeadHight - App.navHeight - HomeViewController.triggerMargin)){
-            self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: 0))
-            self.yang_setNavigationStatusBarStatus(.lightContent)
+  
             self.title = ""
         }else if (scrollView.contentOffset.y >= (HomeViewController.tableViewHeadHight - App.navHeight - HomeViewController.triggerMargin) && scrollView.contentOffset.y <= (HomeViewController.tableViewHeadHight - App.navHeight) ){
             let alpha = ((scrollView.contentOffset.y - (HomeViewController.tableViewHeadHight - App.navHeight - HomeViewController.triggerMargin)) / HomeViewController.triggerMargin)
 
-            self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: alpha))
-            self.yang_setNavigationStatusBarStatus(.default)
             self.title = ""
         }else if (scrollView.contentOffset.y > (HomeViewController.tableViewHeadHight - App.navHeight)){
-            self.yang_setNavigationBackgroundColor(UIColor(white: 1, alpha: 1))
-            self.yang_setNavigationStatusBarStatus(.default)
             self.title = "HOME"
         }
     }

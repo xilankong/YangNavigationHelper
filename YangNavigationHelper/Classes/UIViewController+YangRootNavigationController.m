@@ -11,6 +11,8 @@
 #import "YangHelper.h"
 #import <objc/runtime.h>
 
+#define yangOverLayerTag 99999112
+
 @implementation UIViewController (YangRootNavigationController)
 @dynamic yang_disableInteractivePop;
 
@@ -115,48 +117,6 @@
     } else {
         return UIStatusBarStyleDefault;
     }
-}
-
-- (void)yang_setNavigationBackgroundColor:(UIColor *)color {
-    [self.navigationController.navigationBar yang_setBackgroundColor:color];
-}
-
-- (void)yang_setNavigationBottomLineColor:(UIColor *)color {
-    [self.navigationController.navigationBar yang_setBottomLineColor:color];
-}
-
-#pragma mark 用于一些有透明头部的页面滑动时产生的statusBar色值影响的变更。
-
-- (void)yang_setNavigationStatusBarStatus:(UIStatusBarStyle)style {
-    if (style == self.preferredStatusBarStyle) {
-        return;
-    }
-    if (style == UIStatusBarStyleDefault) {
-        if (self.navigationController) {
-            self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [YangHelper titleColor]};
-            self.yang_lightContentBar = NO;
-            [self.navigationController.navigationBar yang_setBottomLineColor:[YangHelper lineColor]];
-            if (self.yang_backButton) {
-                [self.yang_backButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:[YangHelper navigationBundle] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
-                [self.yang_backButton setImage:[UIImage imageNamed:@"blackarrow" inBundle:[YangHelper navigationBundle] compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
-            }
-        }
-    } else {
-        if (self.navigationController) {
-            self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor  whiteColor]};
-            self.yang_lightContentBar = YES;
-            [self.navigationController.navigationBar yang_setBottomLineColor:[UIColor clearColor]];
-            if (self.yang_backButton) {
-                [self.yang_backButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:[YangHelper navigationBundle] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
-                [self.yang_backButton setImage:[UIImage imageNamed:@"whitearrow" inBundle:[YangHelper navigationBundle] compatibleWithTraitCollection:nil] forState:UIControlStateSelected];
-            }
-        }
-    }
-    [self setNeedsStatusBarAppearanceUpdate];
-}
-
-- (void)yang_resetNavigation {
-    [self.navigationController.navigationBar yang_reset];
 }
 
 @end

@@ -24,8 +24,6 @@ class SkillViewController: UIViewController {
     }
     
     func initUI() {
-        self.yang_setNavigationBackgroundColor(App.navColor)
-        self.yang_setNavigationStatusBarStatus(.lightContent)
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self

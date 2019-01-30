@@ -17,7 +17,6 @@ class AboutMeViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         self.title = "ABOUT ME"
-        self.yang_setNavigationStatusBarStatus(.default)
 //        self.yang_resetNavigation()
 //        self.yang_setNavigationBackgroundColor(UIColor.green.withAlphaComponent(0.5))
         let button = UIButton(frame: CGRect(x: 150, y: 150, width: 100, height: 100))

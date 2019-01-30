@@ -11,7 +11,6 @@
 
 #import "YangRootNavigationController.h"
 #import "UIViewController+YangRootNavigationController.h"
-#import "UINavigationBar+Custom.h"
 #import "UINavigationItem+Custom.h"
 
 #endif /* YangNavigationHelper_h */

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UINavigationBar+Custom.h"
 
 @class YangRootNavigationController;
 
@@ -74,32 +73,5 @@ IB_DESIGNABLE
  *  @brief 控制返回显示
  */
 @property (nonatomic, assign) BOOL yang_hideBackButton;
-
-/**
- @brief 控制状态栏，实现 状态栏变化后自动更新导航组件色值（返回按钮色值、title文案色值）
- 
- @param style statusBarStatus
- */
-- (void)yang_setNavigationStatusBarStatus:(UIStatusBarStyle)style;
-
-/**
- @brief 控制导航条色值
- 
- @param color UIColor
- */
-- (void)yang_setNavigationBackgroundColor:(UIColor *)color;
-
-/**
- @brief 控制导航条底部分割线色值
- 
- @param color bottomLineColor
- */
-- (void)yang_setNavigationBottomLineColor:(UIColor *)color;
-
-/**
- @brief 重置导航
- */
-- (void)yang_resetNavigation;
-
 
 @end
